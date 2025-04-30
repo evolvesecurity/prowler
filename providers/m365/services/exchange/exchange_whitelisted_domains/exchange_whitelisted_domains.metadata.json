@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_whitelisted_domains",
+  "CheckTitle": "Ensure no unauthorized domains are whitelisted via transport rules",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/TransportRule",
+  "Description": "Checks if any transport rules whitelist unauthorized domains, which can bypass spam filtering.",
+  "Risk": "Whitelisting unauthorized domains can allow malicious emails to bypass security controls.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-transportrule",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-TransportRule -Identity <RuleName> -SetScl $null -SenderDomainIs $null",
+      "NativeIaC": "",
+      "Other": "Review and remove any transport rules that whitelist unauthorized domains.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Review and remove any transport rules that whitelist unauthorized domains.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-transportrule"
+    }
+  },
+  "Categories": ["security", "exchange", "mailflow"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that no unauthorized domains are whitelisted via transport rules."
+} 

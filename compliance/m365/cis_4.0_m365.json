@@ -1,0 +1,1640 @@
+{
+  "Framework": "CIS",
+  "Version": "4.0",
+  "Provider": "M365",
+  "Description": "The CIS Microsoft 365 Foundations Benchmark provides prescriptive guidance for establishing a secure configuration posture for Microsoft 365 Cloud offerings running on any OS.",
+  "Requirements": [
+    {
+      "Id": "admincenter_admin_licenses",
+      "Description": "List licenses assigned to privileged (admin) users",
+      "Checks": ["admincenter_admin_licenses"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Informational",
+          "AssessmentStatus": "Automated",
+          "Description": "Lists all privileged (administrator or global reader) users and their assigned licenses.",
+          "Risk": "Privileged users with unnecessary or excessive licenses may increase risk of privilege misuse or license waste.",
+          "RemediationProcedure": "Review the licenses assigned to privileged users and ensure they have only the necessary access.",
+          "AuditProcedure": "Use Microsoft Graph or Azure AD portal to review privileged user licenses.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-planning"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_apps_and_services_settings",
+      "Description": "Check Apps and Services Settings (Office Store and App & Services Trial)",
+      "Checks": ["admincenter_apps_and_services_settings"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Office Store or App & Services Trial are enabled in Apps and Services settings.",
+          "Risk": "Enabling Office Store or App & Services Trial may allow unapproved apps or trials, increasing risk of data exposure or shadow IT.",
+          "RemediationProcedure": "Disable Office Store and App & Services Trial unless explicitly required.",
+          "AuditProcedure": "Review Apps and Services settings in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-apps"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_customer_lockbox",
+      "Description": "Check Customer Lockbox Configuration",
+      "Checks": ["admincenter_customer_lockbox"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Customer Lockbox is enabled in the organization configuration.",
+          "Risk": "Disabling Customer Lockbox may allow Microsoft support engineers to access customer content without explicit approval.",
+          "RemediationProcedure": "Enable Customer Lockbox to require explicit approval for Microsoft support access to customer content.",
+          "AuditProcedure": "Review Customer Lockbox settings in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/compliance/customer-lockbox-requests"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_external_sharing",
+      "Description": "Check External Sharing Policy (Default Sharing Policy)",
+      "Checks": ["admincenter_external_sharing"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the Default Sharing Policy for Exchange Online is enabled (external calendar sharing).",
+          "Risk": "External sharing enabled may expose sensitive calendar information to unauthorized users.",
+          "RemediationProcedure": "Disable external sharing in the Default Sharing Policy unless explicitly required.",
+          "AuditProcedure": "Review Default Sharing Policy in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/sharing/sharing-policies/sharing-policies"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_global_admins_count",
+      "Description": "Check number of global admins",
+      "Checks": ["admincenter_global_admins_count"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the number of global admins is within the recommended range.",
+          "Risk": "Too few or too many global admins can increase risk of privilege misuse or lack of redundancy.",
+          "RemediationProcedure": "Adjust the number of global admins to meet best practices.",
+          "AuditProcedure": "Review global admin assignments in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-planning"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_groups_not_public_visibility",
+      "Description": "Ensure that only organizationally managed/approved public groups exist",
+      "Checks": ["admincenter_groups_not_public_visibility"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Level 2",
+          "AssessmentStatus": "Automated",
+          "Description": "Microsoft 365 Groups enable shared resource access across Microsoft 365 services. The default privacy setting for groups is 'Public,' which allows users within the organization to access the group's resources. Ensure that only organizationally managed and approved public groups exist to prevent unauthorized access to sensitive information.",
+          "Risk": "Public groups may expose sensitive information to all users in the organization.",
+          "RemediationProcedure": "Audit all Microsoft 365 public groups and ensure they are organizationally managed and approved.",
+          "AuditProcedure": "Review the list of public groups in the Microsoft 365 Admin Center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/admin/create-groups/manage-groups?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_idle_session_timeout",
+      "Description": "Check Idle Session Timeout in Conditional Access Policies",
+      "Checks": ["admincenter_idle_session_timeout"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if any conditional access policy with Idle Session Timeout is set to less than 3 seconds or not set.",
+          "Risk": "Lack of idle session timeout increases the risk of unauthorized access if a session is left unattended.",
+          "RemediationProcedure": "Set Idle Session Timeout to a secure value (at least 3 seconds or more) in all relevant conditional access policies.",
+          "AuditProcedure": "Review conditional access policies in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-session-lifetime"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_internal_phishing_protection",
+      "Description": "Check Internal Phishing Protection (Forms)",
+      "Checks": ["admincenter_internal_phishing_protection"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if internal phishing protection is enabled in Microsoft Forms settings.",
+          "Risk": "Disabling internal phishing protection may allow malicious forms to be distributed within the organization.",
+          "RemediationProcedure": "Enable internal phishing protection in Microsoft Forms settings.",
+          "AuditProcedure": "Review Forms settings in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-forms/phishing-protection"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_password_expiration_policy",
+      "Description": "Check Password Expiration Policy for Domains",
+      "Checks": ["admincenter_password_expiration_policy"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if any domain has a password expiration policy set to less than 365 days.",
+          "Risk": "Short password expiration periods may increase the risk of account lockouts and user inconvenience, while long or unset periods may increase the risk of compromised credentials.",
+          "RemediationProcedure": "Set the password expiration policy for all domains to 365 days or greater.",
+          "AuditProcedure": "Review password expiration policies in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/admin/add-users/set-password-expiration-policy?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_public_groups",
+      "Description": "List all public Microsoft 365 groups",
+      "Checks": ["admincenter_public_groups"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Lists all Microsoft 365 groups with Visibility set to 'Public'.",
+          "Risk": "Public groups may expose sensitive information to all users in the organization.",
+          "RemediationProcedure": "Review public groups and change their visibility to 'Private' if they should not be accessible to all users.",
+          "AuditProcedure": "Review group visibility settings in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.groups/get-mggroup"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_settings_password_never_expire",
+      "Description": "Check if password never expires setting is enabled for any domain",
+      "Checks": ["admincenter_settings_password_never_expire"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if any domain has the password never expires setting enabled.",
+          "Risk": "Enabling password never expires increases the risk of compromised credentials.",
+          "RemediationProcedure": "Disable the password never expires setting for all domains.",
+          "AuditProcedure": "Review domain password policies in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/admin/add-users/set-password-expiration-policy?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_signin_shared_mailboxes",
+      "Description": "Detect sign-in enabled for Shared Mailboxes",
+      "Checks": ["admincenter_signin_shared_mailboxes"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Detects if any shared mailboxes have sign-in enabled (AccountEnabled=True).",
+          "Risk": "Shared mailboxes with sign-in enabled may allow unauthorized access or misuse.",
+          "RemediationProcedure": "Disable sign-in for shared mailboxes unless explicitly required.",
+          "AuditProcedure": "Review shared mailbox sign-in settings in the Microsoft 365 admin center.",
+          "References": "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-user-mailboxes/disable-or-enable-mailbox-features"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_sway_sharing",
+      "Description": "Manual Check: Sway Sharing",
+      "Checks": ["admincenter_sway_sharing"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Medium",
+          "AssessmentStatus": "Manual",
+          "Description": "Manual check to verify that Sway sharing is not allowed in the organization.",
+          "Risk": "Allowing Sway sharing may expose sensitive content to unauthorized users.",
+          "RemediationProcedure": "Manually verify that 'Let people in the organization share their sways' is NOT checked in the Sway admin settings.",
+          "AuditProcedure": "Visit the Sway admin settings and ensure sharing is not allowed.",
+          "References": "https://admin.microsoft.com/#/Settings/Services/:/Settings/L1/Sway"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_third_party_storage",
+      "Description": "Check for Third Party Storage Service Principal",
+      "Checks": ["admincenter_third_party_storage"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if a service principal with a known third party storage App ID exists.",
+          "Risk": "Presence of a third party storage service principal may allow unauthorized data access or exfiltration.",
+          "RemediationProcedure": "Remove unauthorized third party storage service principals unless explicitly required.",
+          "AuditProcedure": "Review service principals in Azure AD for known third party storage App IDs.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/delete-application-portal"
+        }
+      ]
+    },
+    {
+      "Id": "entra_admin_consent_request_policy",
+      "Description": "Ensure Admin Consent Request Policy is Enabled",
+      "Checks": ["entra_admin_consent_request_policy"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the Admin Consent Request Policy is enabled in the tenant.",
+          "Risk": "If the Admin Consent Request Policy is disabled, users may not be able to request admin consent for applications, reducing oversight and increasing risk.",
+          "RemediationProcedure": "Enable the Admin Consent Request Policy to allow users to request admin consent for applications.",
+          "AuditProcedure": "Review admin consent workflow settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-admin-consent-workflow"
+        }
+      ]
+    },
+    {
+      "Id": "entra_all_users_mfa_capable",
+      "Description": "Ensure All Member Users Are MFA Capable",
+      "Checks": ["entra_all_users_mfa_capable"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if all member users are MFA capable.",
+          "Risk": "If any member user is not MFA capable, the organization is at increased risk of account compromise.",
+          "RemediationProcedure": "Ensure all users are registered for MFA.",
+          "AuditProcedure": "Review user registration details for MFA in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-user-registration-details"
+        }
+      ]
+    },
+    {
+      "Id": "entra_conditional_access_grant_controls_check",
+      "Description": "Ensure Conditional Access Policies Have Authentication Strength Configured in Grant Controls",
+      "Checks": ["entra_conditional_access_grant_controls_check"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if at least one enabled Conditional Access policy has authentication strength configured in grantControls.",
+          "Risk": "If no enabled Conditional Access policies have authentication strength configured, authentication requirements may be insufficient.",
+          "RemediationProcedure": "Configure authentication strength in grant controls for Conditional Access policies.",
+          "AuditProcedure": "Review Conditional Access policies in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-authentication-strength"
+        }
+      ]
+    },
+    {
+      "Id": "entra_conditional_access_mfa_policy_check",
+      "Description": "Ensure Conditional Access MFA Policies Apply to All Users with No Exclusions",
+      "Checks": ["entra_conditional_access_mfa_policy_check"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if enabled Conditional Access policies with 'MFA' in their name apply to all users with no exclusions.",
+          "Risk": "If Conditional Access MFA policies have exclusions, some users may not be protected by MFA, increasing risk.",
+          "RemediationProcedure": "Ensure all enabled Conditional Access MFA policies apply to all users with no exclusions.",
+          "AuditProcedure": "Review Conditional Access policies in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-all-users"
+        }
+      ]
+    },
+    {
+      "Id": "entra_conditional_access_session_controls_check",
+      "Description": "Ensure Conditional Access Policies Have Session Controls Configured",
+      "Checks": ["entra_conditional_access_session_controls_check"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if at least one enabled Conditional Access policy has session controls configured.",
+          "Risk": "If no enabled Conditional Access policies have session controls, session security may be insufficient.",
+          "RemediationProcedure": "Configure session controls in Conditional Access policies to enhance session security.",
+          "AuditProcedure": "Review Conditional Access policies in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/concept-conditional-access-session-controls"
+        }
+      ]
+    },
+    {
+      "Id": "entra_dynamic_guest_group",
+      "Description": "Ensure Dynamic Guest Groups Exist",
+      "Checks": ["entra_dynamic_guest_group"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if there are any groups with dynamic membership (Dynamic Guest Groups) in the tenant.",
+          "Risk": "If no dynamic guest groups exist, guest access may not be managed dynamically, increasing administrative overhead or risk of misconfiguration.",
+          "RemediationProcedure": "Create and use dynamic guest groups to manage guest access dynamically.",
+          "AuditProcedure": "Review group membership types in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership"
+        }
+      ]
+    },
+    {
+      "Id": "entra_guest_user_access",
+      "Description": "Ensure Guest User Role ID is Set to a Most Restrictive Value",
+      "Checks": ["entra_guest_user_access"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the Guest User Role ID is set to a most restrictive value in the tenant.",
+          "Risk": "If the Guest User Role ID is not set to a most restrictive value, guest users may have more permissions than intended, increasing risk.",
+          "RemediationProcedure": "Set the Guest User Role ID to a most restrictive value to limit guest user permissions.",
+          "AuditProcedure": "Review guest user access settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/guest-user-permissions"
+        }
+      ]
+    },
+    {
+      "Id": "entra_guest_user_invitations",
+      "Description": "Ensure Guest User Invitations Setting is Sufficiently Restrictive",
+      "Checks": ["entra_guest_user_invitations"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the Guest User Invitations setting (AllowInvitesFrom) is set to a sufficiently restrictive value in the tenant.",
+          "Risk": "If the Guest User Invitations setting is not restrictive enough, unauthorized users may be able to invite guests, increasing risk.",
+          "RemediationProcedure": "Set the Guest User Invitations setting to a most restrictive value to limit who can invite guests.",
+          "AuditProcedure": "Review guest user invitation settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/external-collaboration-settings"
+        }
+      ]
+    },
+    {
+      "Id": "entra_mfa_status_admin_roles",
+      "Description": "Ensure MFA Status for Admin Roles is Monitored",
+      "Checks": ["entra_mfa_status_admin_roles"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if MFA status for admin roles is monitored and data is available.",
+          "Risk": "If MFA status for admin roles is not monitored, privileged accounts may be at risk of compromise.",
+          "RemediationProcedure": "Monitor and enforce MFA for all admin roles to reduce risk of compromise.",
+          "AuditProcedure": "Review MFA status for admin roles in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings"
+        }
+      ]
+    },
+    {
+      "Id": "entra_microsoft_authenticator_feature_settings",
+      "Description": "Ensure Microsoft Authenticator Feature Settings Are Enabled",
+      "Checks": ["entra_microsoft_authenticator_feature_settings"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if all Microsoft Authenticator feature settings are enabled.",
+          "Risk": "If any Microsoft Authenticator feature setting is disabled, users may not be able to use all security features, increasing risk.",
+          "RemediationProcedure": "Enable all Microsoft Authenticator feature settings to maximize security.",
+          "AuditProcedure": "Review Microsoft Authenticator settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-policy"
+        }
+      ]
+    },
+    {
+      "Id": "entra_password_hash_sync",
+      "Description": "Ensure Password Hash Sync is Enabled",
+      "Checks": ["entra_password_hash_sync"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Password Hash Sync is enabled in the tenant organization.",
+          "Risk": "If Password Hash Sync is disabled, users' passwords may not be synchronized between on-premises and cloud, increasing risk of authentication issues.",
+          "RemediationProcedure": "Enable Password Hash Sync to ensure passwords are synchronized between on-premises and Azure AD.",
+          "AuditProcedure": "Review Azure AD Connect settings for Password Hash Sync.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/hybrid/whatis-phs"
+        }
+      ]
+    },
+    {
+      "Id": "entra_per_user_mfa_state",
+      "Description": "Ensure Per-User MFA is Enabled for All Users",
+      "Checks": ["entra_per_user_mfa_state"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if per-user MFA is enabled for all users in the tenant.",
+          "Risk": "If per-user MFA is not enabled for all users, accounts are more susceptible to compromise via phishing or credential theft.",
+          "RemediationProcedure": "Enable per-user MFA for all users in the tenant.",
+          "AuditProcedure": "Review per-user MFA status in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-userstates"
+        }
+      ]
+    },
+    {
+      "Id": "entra_security_defaults",
+      "Description": "Ensure Security Defaults are Disabled",
+      "Checks": ["entra_security_defaults"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Security Defaults are disabled in the tenant.",
+          "Risk": "If Security Defaults are enabled, it may enforce baseline security policies that could conflict with custom security configurations or advanced conditional access policies.",
+          "RemediationProcedure": "Disable Security Defaults if you require custom security policies or advanced configurations.",
+          "AuditProcedure": "Review Security Defaults settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/concept-fundamentals-security-defaults"
+        }
+      ]
+    },
+    {
+      "Id": "entra_self_service_password_reset",
+      "Description": "Ensure Self-Service Password Reset is Enabled",
+      "Checks": ["entra_self_service_password_reset"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Self-Service Password Reset (SSPR) is enabled in authentication method policies.",
+          "Risk": "If SSPR is not enabled, users may not be able to reset their passwords securely, increasing support costs and risk.",
+          "RemediationProcedure": "Enable Self-Service Password Reset to allow users to securely reset their passwords.",
+          "AuditProcedure": "Review authentication method policies in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-howitworks"
+        }
+      ]
+    },
+    {
+      "Id": "entra_sign_in_risk_policy",
+      "Description": "Ensure Sign-In Risk Policies are Configured",
+      "Checks": ["entra_sign_in_risk_policy"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Sign-In Risk Policies are configured in Conditional Access policies.",
+          "Risk": "If Sign-In Risk Policies are not configured, risky sign-ins may not be detected or remediated.",
+          "RemediationProcedure": "Configure Sign-In Risk Policies in Conditional Access to detect and remediate risky sign-ins.",
+          "AuditProcedure": "Review Conditional Access policies for sign-in risk conditions in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-risk"
+        }
+      ]
+    },
+    {
+      "Id": "entra_tenant_creation",
+      "Description": "Ensure Tenant Creation is Not Allowed",
+      "Checks": ["entra_tenant_creation"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if tenant creation is not allowed for default user roles.",
+          "Risk": "If tenant creation is allowed, users may create new Azure AD tenants, which could lead to unmonitored or unapproved environments.",
+          "RemediationProcedure": "Disallow tenant creation for default user roles.",
+          "AuditProcedure": "Review user role permissions in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-defaults"
+        }
+      ]
+    },
+    {
+      "Id": "entra_third_party_application",
+      "Description": "Ensure Third Party Application Creation is Not Allowed",
+      "Checks": ["entra_third_party_application"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if third party application creation is not allowed for default user roles.",
+          "Risk": "If third party application creation is allowed, users may register potentially risky or unapproved applications in the tenant.",
+          "RemediationProcedure": "Disallow third party application creation for default user roles.",
+          "AuditProcedure": "Review user role permissions in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-defaults"
+        }
+      ]
+    },
+    {
+      "Id": "entra_user_app_consent",
+      "Description": "Ensure User App Consent Does Not Allow Default Low Permission Grants",
+      "Checks": ["entra_user_app_consent"],
+      "Attributes": [
+        {
+          "Section": "Entra",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the permission grant policy 'ManagePermissionGrantsForSelf.microsoft-user-default-low' is not assigned for user app consent.",
+          "Risk": "If this policy is assigned, users may grant excessive permissions to applications, increasing the risk of data exposure.",
+          "RemediationProcedure": "Ensure the permission grant policy 'ManagePermissionGrantsForSelf.microsoft-user-default-low' is not assigned for user app consent.",
+          "AuditProcedure": "Review user app consent settings in Azure AD.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_additional_storage_providers",
+      "Description": "Ensure Additional Storage Providers are disabled in OWA Mailbox Policy",
+      "Checks": ["exchange_additional_storage_providers"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Additional Storage Providers are disabled in OWA Mailbox Policy.",
+          "Risk": "Allowing additional storage providers in OWA can expose sensitive data to third-party services.",
+          "RemediationProcedure": "Set AdditionalStorageProvidersAvailable to False in all OWA Mailbox Policies.",
+          "AuditProcedure": "Review OWA Mailbox Policy settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-owamailboxpolicy"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_audit_bypass_enabled",
+      "Description": "Ensure no mailboxes have Audit Bypass enabled",
+      "Checks": ["exchange_audit_bypass_enabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if any mailboxes have Audit Bypass enabled.",
+          "Risk": "Mailboxes with Audit Bypass enabled may not be audited, leading to undetected malicious activity.",
+          "RemediationProcedure": "Remove Audit Bypass for all mailboxes using Remove-MailboxAuditBypassAssociation.",
+          "AuditProcedure": "Review mailbox audit bypass associations in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/remove-mailboxauditbypassassociation"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_audit_disabled",
+      "Description": "Ensure mailbox audit logging is enabled for all mailboxes",
+      "Checks": ["exchange_audit_disabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if mailbox audit logging is enabled for all mailboxes in Exchange Online.",
+          "Risk": "If mailbox audit logging is disabled, malicious or unauthorized mailbox activity may go undetected.",
+          "RemediationProcedure": "Enable mailbox audit logging for all mailboxes using Set-Mailbox -AuditEnabled $true.",
+          "AuditProcedure": "Review mailbox audit logging settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_calendar_sharing_enabled",
+      "Description": "Ensure calendar sharing is restricted as appropriate",
+      "Checks": ["exchange_calendar_sharing_enabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if calendar sharing is restricted to appropriate users or domains.",
+          "Risk": "Unrestricted calendar sharing can expose sensitive scheduling information to unauthorized users.",
+          "RemediationProcedure": "Restrict calendar sharing to trusted users or domains only.",
+          "AuditProcedure": "Review calendar sharing policies in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/sharing/sharing-policies/sharing-policies"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_external_in_outlook",
+      "Description": "Ensure 'External in Outlook' is enabled",
+      "Checks": ["exchange_external_in_outlook"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if the 'External in Outlook' feature is enabled to help users identify external senders.",
+          "Risk": "If disabled, users may not be able to easily identify emails from external senders, increasing phishing risk.",
+          "RemediationProcedure": "Enable the 'External in Outlook' feature in Exchange Online.",
+          "AuditProcedure": "Review External in Outlook settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/external-in-outlook"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_mail_forwarding_blocked_or_disabled",
+      "Description": "Ensure mail forwarding is blocked or disabled",
+      "Checks": ["exchange_mail_forwarding_blocked_or_disabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if mail forwarding is blocked or disabled via transport rules and spam filter policies.",
+          "Risk": "Unrestricted mail forwarding can lead to data exfiltration and information leakage.",
+          "RemediationProcedure": "Block or disable mail forwarding using transport rules and set AutoForwardingMode to 'Off' in spam filter policies.",
+          "AuditProcedure": "Review mail forwarding settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/security-and-compliance/mail-flow-rules/redirect-messages"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_mailbox_auditing_e3_users",
+      "Description": "Ensure mailbox auditing is enabled for all E3 users",
+      "Checks": ["exchange_mailbox_auditing_e3_users"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if mailbox auditing is enabled for all users with an E3 license in Exchange Online.",
+          "Risk": "If mailbox auditing is disabled for E3 users, malicious or unauthorized mailbox activity may go undetected.",
+          "RemediationProcedure": "Enable mailbox audit logging for all E3 mailboxes using Set-Mailbox -AuditEnabled $true.",
+          "AuditProcedure": "Review mailbox audit logging settings for E3 users in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_mailtips_enabled",
+      "Description": "Ensure MailTips are enabled for all users",
+      "Checks": ["exchange_mailtips_enabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "Low",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if MailTips are enabled to provide helpful information to users when composing messages.",
+          "Risk": "Disabling MailTips may result in users missing important information or warnings when sending emails.",
+          "RemediationProcedure": "Enable MailTips for all users in the organization.",
+          "AuditProcedure": "Review MailTips settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/mailtips/mailtips"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_modern_auth_enabled",
+      "Description": "Ensure Modern Authentication is enabled",
+      "Checks": ["exchange_modern_auth_enabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Modern Authentication (OAuth2) is enabled for Exchange Online.",
+          "Risk": "Disabling Modern Authentication increases the risk of credential theft and legacy protocol abuse.",
+          "RemediationProcedure": "Enable Modern Authentication (OAuth2ClientProfileEnabled) in Exchange Online.",
+          "AuditProcedure": "Review Modern Authentication settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/enable-or-disable-modern-authentication-in-exchange-online"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_smtp_auth_disabled",
+      "Description": "Ensure SMTP client authentication is disabled",
+      "Checks": ["exchange_smtp_auth_disabled"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if SMTP client authentication is disabled to prevent legacy protocol abuse.",
+          "Risk": "Enabling SMTP client authentication can allow attackers to bypass modern authentication controls.",
+          "RemediationProcedure": "Set SmtpClientAuthenticationDisabled to True in Exchange Online.",
+          "AuditProcedure": "Review SMTP client authentication settings in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-transportconfig"
+        }
+      ]
+    },
+    {
+      "Id": "purview_audit_log_search_enabled",
+      "Description": "Ensure Purview audit log search is enabled",
+      "Checks": ["purview_audit_log_search_enabled"],
+      "Attributes": [
+        {
+          "Section": "Purview",
+          "Profile": "Critical",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure Purview audit log search is enabled.",
+          "Risk": "Disabling Microsoft 365 audit log search can hinder the ability to track and monitor user and admin activities, making it harder to detect suspicious behavior, security incidents, or compliance violations. This can result in undetected breaches and inability to respond to incidents effectively.",
+          "RemediationProcedure": "Ensure that Microsoft 365 audit log search is enabled to maintain a comprehensive record of user and admin activities.",
+          "AuditProcedure": "Review audit log search settings in Microsoft Purview.",
+          "References": "https://learn.microsoft.com/en-us/purview/audit-search?tabs=microsoft-purview-portal"
+        }
+      ]
+    },
+    {
+      "Id": "purview_dlp_policies_teams",
+      "Description": "Ensure DLP Policies for Teams are Compliant",
+      "Checks": ["purview_dlp_policies_teams"],
+      "Attributes": [
+        {
+          "Section": "Purview",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if DLP policies for Teams workload are enabled and apply to all Teams locations.",
+          "Risk": "If DLP policies for Teams are not enabled or do not apply to all locations, sensitive data may be at risk of exposure.",
+          "RemediationProcedure": "Enable DLP policies for Teams and ensure they apply to all Teams locations.",
+          "AuditProcedure": "Review DLP policy settings for Teams in Microsoft Purview.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/compliance/dlp-microsoft-teams?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_external_sharing_managed",
+      "Description": "Ensure SharePoint external sharing is managed through domain whitelists/blacklists.",
+      "Checks": ["sharepoint_external_sharing_managed"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Control the sharing of documents to external domains by either blocking specific domains or only allowing sharing with named trusted domains.",
+          "Risk": "If domain-based sharing restrictions are not enforced, users may share documents with untrusted external entities, increasing the risk of data exfiltration or unauthorized access.",
+          "RemediationProcedure": "Enforce domain-based restrictions for SharePoint external sharing to control document sharing with trusted domains.",
+          "AuditProcedure": "Review external sharing domain restrictions in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_external_sharing_restricted",
+      "Description": "Ensure external content sharing is restricted.",
+      "Checks": ["sharepoint_external_sharing_restricted"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that external sharing settings in SharePoint are restricted to 'New and existing guests' or a less permissive level to enforce authentication and control over shared content.",
+          "Risk": "If external sharing is not restricted, unauthorized users may gain access to sensitive information, increasing the risk of data breaches and compliance violations.",
+          "RemediationProcedure": "Restrict external sharing in SharePoint to 'New and existing guests' or a more restrictive setting to enhance security.",
+          "AuditProcedure": "Review external sharing settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_guest_sharing_restricted",
+      "Description": "Ensure that SharePoint guest users cannot share items they don't own.",
+      "Checks": ["sharepoint_guest_sharing_restricted"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that guest users in SharePoint cannot share items they do not own, preventing unauthorized disclosure of shared content.",
+          "Risk": "If guest users are allowed to share items they don't own, there is a higher risk of unauthorized data exposure, as external users could share content beyond intended recipients.",
+          "RemediationProcedure": "Restrict guest users from sharing items they don't own to enhance security and prevent unauthorized access.",
+          "AuditProcedure": "Review guest sharing settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_modern_authentication_required",
+      "Description": "Ensure modern authentication for SharePoint applications is required.",
+      "Checks": ["sharepoint_modern_authentication_required"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "Critical",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that modern authentication is required for SharePoint applications in Microsoft 365, preventing the use of legacy authentication protocols and blocking access to apps that don't use modern authentication.",
+          "Risk": "If modern authentication is not enforced, SharePoint applications may rely on basic authentication, which lacks strong security measures like MFA and increases the risk of credential theft.",
+          "RemediationProcedure": "Block access for SharePoint applications that don't use modern authentication to ensure secure authentication mechanisms.",
+          "AuditProcedure": "Review authentication settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "teams_allow_cloud_recording",
+      "Description": "Ensure Allow Cloud Recording is disabled in Teams Meetings",
+      "Checks": ["teams_allow_cloud_recording"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if cloud recording is disabled in Teams meetings.",
+          "Risk": "Allowing cloud recording can result in unauthorized or accidental recording of sensitive meetings.",
+          "RemediationProcedure": "Disable AllowCloudRecording in the global meeting policy.",
+          "AuditProcedure": "Review Teams meeting policy settings for cloud recording.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+        }
+      ]
+    },
+    {
+      "Id": "teams_defender_reporting_policies",
+      "Description": "Ensure Teams and Defender Reporting Policies are configured securely",
+      "Checks": ["teams_defender_reporting_policies"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams and Defender reporting policies are configured securely, including AllowSecurityEndUserReporting and Defender report submission settings.",
+          "Risk": "Improper configuration of reporting policies can result in missed security incidents or data leakage.",
+          "RemediationProcedure": "Configure Teams and Defender reporting policies to match security best practices.",
+          "AuditProcedure": "Review Teams messaging and reporting policy settings.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmessagingpolicy"
+        }
+      ]
+    },
+    {
+      "Id": "teams_anonymous_users_joining_meetings",
+      "Description": "Ensure anonymous users joining meetings is disabled in Teams",
+      "Checks": ["teams_anonymous_users_joining_meetings"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if anonymous users are prevented from joining Teams meetings.",
+          "Risk": "Allowing anonymous users to join meetings can result in unauthorized access to sensitive discussions.",
+          "RemediationProcedure": "Disable anonymous users from joining meetings in Teams meeting policy.",
+          "AuditProcedure": "Review Teams meeting policy settings for anonymous users.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_anonymous_users_starting_meetings",
+      "Description": "Ensure anonymous users starting meetings is disabled in Teams",
+      "Checks": ["teams_anonymous_users_starting_meetings"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if anonymous users are prevented from starting Teams meetings.",
+          "Risk": "Allowing anonymous users to start meetings can result in unauthorized or disruptive meetings.",
+          "RemediationProcedure": "Disable anonymous users from starting meetings in Teams meeting policy.",
+          "AuditProcedure": "Review Teams meeting policy settings for anonymous users.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_communication_settings",
+      "Description": "Ensure Teams communication settings are configured securely",
+      "Checks": ["teams_communication_settings"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams communication settings are configured to prevent unwanted or insecure communication.",
+          "Risk": "Improper communication settings can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Configure Teams communication settings to match security best practices.",
+          "AuditProcedure": "Review Teams communication settings in the Teams admin center.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/communication-settings-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_dialin_users_bypass_lobby",
+      "Description": "Ensure dial-in users cannot bypass the lobby in Teams meetings",
+      "Checks": ["teams_dialin_users_bypass_lobby"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if dial-in users are prevented from bypassing the lobby in Teams meetings.",
+          "Risk": "Allowing dial-in users to bypass the lobby can result in unauthorized access to meetings.",
+          "RemediationProcedure": "Configure Teams meeting policy to require dial-in users to wait in the lobby.",
+          "AuditProcedure": "Review Teams meeting policy settings for dial-in users.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_email_into_channel",
+      "Description": "Ensure email into channel is restricted in Teams",
+      "Checks": ["teams_email_into_channel"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if email into channel is restricted to trusted senders or domains.",
+          "Risk": "Unrestricted email into channel can result in spam or malicious content being delivered to Teams channels.",
+          "RemediationProcedure": "Restrict email into channel to trusted senders or domains only.",
+          "AuditProcedure": "Review Teams email integration settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/limits-specifications-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_file_sharing",
+      "Description": "Ensure external file sharing is restricted in Teams",
+      "Checks": ["teams_external_file_sharing"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external file sharing is restricted to trusted users or domains in Teams.",
+          "Risk": "Unrestricted external file sharing can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict external file sharing to trusted users or domains only.",
+          "AuditProcedure": "Review Teams external sharing settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/sharing-files-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_non_trusted_meeting_chat",
+      "Description": "Ensure chat with external non-trusted users is restricted in Teams meetings",
+      "Checks": ["teams_external_non_trusted_meeting_chat"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if chat with external non-trusted users is restricted in Teams meetings.",
+          "Risk": "Allowing chat with external non-trusted users can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict chat with external non-trusted users in Teams meetings.",
+          "AuditProcedure": "Review Teams meeting policy settings for chat.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_participant_give_control",
+      "Description": "Ensure external participants cannot give control in Teams meetings",
+      "Checks": ["teams_external_participant_give_control"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external participants are prevented from giving control in Teams meetings.",
+          "Risk": "Allowing external participants to give control can result in unauthorized access or disruption.",
+          "RemediationProcedure": "Prevent external participants from giving control in Teams meetings.",
+          "AuditProcedure": "Review Teams meeting policy settings for control sharing.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_teams_communication",
+      "Description": "Ensure external Teams communication is restricted",
+      "Checks": ["teams_external_teams_communication"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external Teams communication is restricted to trusted organizations.",
+          "Risk": "Unrestricted external Teams communication can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict external Teams communication to trusted organizations only.",
+          "AuditProcedure": "Review Teams external access settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    },
+    {
+      "Id": "teams_federation_configuration",
+      "Description": "Ensure Teams federation configuration is secure",
+      "Checks": ["teams_federation_configuration"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams federation configuration is secure and only allows trusted domains.",
+          "Risk": "Improper federation configuration can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Configure Teams federation to only allow trusted domains.",
+          "AuditProcedure": "Review Teams federation settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    },
+    {
+      "Id": "teams_lobby_bypass",
+      "Description": "Ensure Teams lobby bypass is restricted",
+      "Checks": ["teams_lobby_bypass"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if lobby bypass is restricted to trusted users or domains in Teams meetings.",
+          "Risk": "Unrestricted lobby bypass can result in unauthorized access to meetings.",
+          "RemediationProcedure": "Restrict lobby bypass to trusted users or domains only.",
+          "AuditProcedure": "Review Teams meeting policy settings for lobby bypass.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_meeting_chat_enabled",
+      "Description": "Ensure Teams meeting chat is enabled only for trusted users",
+      "Checks": ["teams_meeting_chat_enabled"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams meeting chat is enabled only for trusted users or domains.",
+          "Risk": "Unrestricted meeting chat can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict meeting chat to trusted users or domains only.",
+          "AuditProcedure": "Review Teams meeting policy settings for chat.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_presenter_settings",
+      "Description": "Ensure Teams presenter settings are restricted",
+      "Checks": ["teams_presenter_settings"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams presenter settings are restricted to trusted users or domains.",
+          "Risk": "Unrestricted presenter settings can result in unauthorized users presenting in meetings.",
+          "RemediationProcedure": "Restrict presenter settings to trusted users or domains only.",
+          "AuditProcedure": "Review Teams meeting policy settings for presenters.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_skype_communication",
+      "Description": "Ensure Teams-Skype communication is restricted",
+      "Checks": ["teams_skype_communication"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams-Skype communication is restricted to trusted users or domains.",
+          "Risk": "Unrestricted Teams-Skype communication can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict Teams-Skype communication to trusted users or domains only.",
+          "AuditProcedure": "Review Teams external access settings for Skype.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_users_admins_reduced_license_footprint",
+      "Description": "Ensure administrative accounts use licenses with a reduced application footprint",
+      "Checks": ["admincenter_users_admins_reduced_license_footprint"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Level 1",
+          "AssessmentStatus": "Automated",
+          "Description": "Administrative accounts are special privileged accounts with varying levels of access to data, users, and settings. It is recommended that privileged accounts either not be licensed or use Microsoft Entra ID P1 or Microsoft Entra ID P2 licenses to minimize application exposure.",
+          "Risk": "Ensuring administrative accounts do not use licenses with applications assigned to them reduces the attack surface of high-privileged identities. This minimizes the likelihood of these accounts being targeted by social engineering attacks or exposed to malicious content via licensed applications. Administrative activities should be restricted to dedicated accounts without access to collaborative tools like mailboxes.",
+          "RemediationProcedure": "Review the licenses assigned to administrative accounts. Remove licenses granting access to collaborative applications and assign Microsoft Entra ID P1 or P2 licenses if participation in Microsoft 365 security services is required. Configure alerts to be sent to valid email addresses for monitoring.",
+          "AuditProcedure": "Log in to the Microsoft 365 Admin Center and review the licenses assigned to administrative accounts. Confirm that administrative accounts either have no licenses or are limited to Microsoft Entra ID P1 or P2 licenses without collaborative applications enabled.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/admin/add-users/set-password-expiration-policy?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "admincenter_users_between_two_and_four_global_admins",
+      "Description": "Ensure that between two and four global admins are designated",
+      "Checks": ["admincenter_users_between_two_and_four_global_admins"],
+      "Attributes": [
+        {
+          "Section": "Admin Center",
+          "Profile": "Level 1",
+          "AssessmentStatus": "Automated",
+          "Description": "More than one global administrator should be designated so a single admin can be monitored and to provide redundancy should a single admin leave an organization. Additionally, there should be no more than four global admins set for any tenant. Ideally, global administrators will have no licenses assigned to them.",
+          "Risk": "If there is only one global tenant administrator, he or she can perform malicious activity without the possibility of being discovered by another admin. If there are numerous global tenant administrators, the more likely it is that one of their accounts will be successfully breached by an external attacker.",
+          "RemediationProcedure": "Review the list of global administrators in the tenant and ensure there are at least two but no more than four accounts assigned this role. Remove excess global administrator accounts and create additional ones if necessary. Avoid assigning licenses to these accounts.",
+          "AuditProcedure": "Log in to the Microsoft 365 Admin Center and review the list of global administrators. Verify that there are at least two but no more than four global administrators configured.",
+          "References": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-planning"
+        }
+      ]
+    },
+    {
+      "Id": "defender_anti_phishing_policy",
+      "Description": "Ensure anti-phishing policy is enabled and configured",
+      "Checks": ["defender_anti_phishing_policy"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if anti-phishing policy is enabled and configured in Microsoft Defender for Office 365.",
+          "Risk": "Disabling or misconfiguring anti-phishing policy can result in increased risk of phishing attacks.",
+          "RemediationProcedure": "Enable and configure anti-phishing policy in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review anti-phishing policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-phishing-policies-office-365"
+        }
+      ]
+    },
+    {
+      "Id": "defender_atp_policy_spo_teams_odb_enabled",
+      "Description": "Ensure ATP policy for SharePoint, OneDrive, and Teams is enabled",
+      "Checks": ["defender_atp_policy_spo_teams_odb_enabled"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if ATP policy for SharePoint, OneDrive, and Teams is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling ATP policy for SharePoint, OneDrive, and Teams can result in increased risk of malware and data leakage.",
+          "RemediationProcedure": "Enable ATP policy for SharePoint, OneDrive, and Teams in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review ATP policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/atp-for-spo-odb-and-teams"
+        }
+      ]
+    },
+    {
+      "Id": "defender_comprehensive_attachment_filtering",
+      "Description": "Ensure comprehensive attachment filtering is enabled",
+      "Checks": ["defender_comprehensive_attachment_filtering"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if comprehensive attachment filtering is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling comprehensive attachment filtering can result in increased risk of malware and phishing attacks.",
+          "RemediationProcedure": "Enable comprehensive attachment filtering in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review attachment filtering settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-malware-policies-about"
+        }
+      ]
+    },
+    {
+      "Id": "defender_connection_filter_ip_allow_list",
+      "Description": "Ensure connection filter IP allow list is configured securely",
+      "Checks": ["defender_connection_filter_ip_allow_list"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if connection filter IP allow list is configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured IP allow list can result in unauthorized access or bypass of security controls.",
+          "RemediationProcedure": "Configure connection filter IP allow list securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review connection filter IP allow list settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-the-connection-filter-policy"
+        }
+      ]
+    },
+    {
+      "Id": "defender_connection_filter_safe_list",
+      "Description": "Ensure connection filter safe list is configured securely",
+      "Checks": ["defender_connection_filter_safe_list"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if connection filter safe list is configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured safe list can result in unauthorized access or bypass of security controls.",
+          "RemediationProcedure": "Configure connection filter safe list securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review connection filter safe list settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-the-connection-filter-policy"
+        }
+      ]
+    },
+    {
+      "Id": "defender_dkim_signing",
+      "Description": "Ensure DKIM signing is enabled",
+      "Checks": ["defender_dkim_signing"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if DKIM signing is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling DKIM signing can result in increased risk of email spoofing and phishing attacks.",
+          "RemediationProcedure": "Enable DKIM signing in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review DKIM signing settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-dkim-to-validate-outbound-email"
+        }
+      ]
+    },
+    {
+      "Id": "defender_dmarc_records",
+      "Description": "Ensure DMARC records are configured securely",
+      "Checks": ["defender_dmarc_records"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if DMARC records are configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured DMARC records can result in increased risk of email spoofing and phishing attacks.",
+          "RemediationProcedure": "Configure DMARC records securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review DMARC record settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-dmarc-to-validate-email"
+        }
+      ]
+    },
+    {
+      "Id": "defender_exchange_online_spam_policies",
+      "Description": "Ensure Exchange Online spam policies are configured securely",
+      "Checks": ["defender_exchange_online_spam_policies"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Exchange Online spam policies are configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured spam policies can result in increased risk of spam and phishing attacks.",
+          "RemediationProcedure": "Configure Exchange Online spam policies securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review spam policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-your-spam-filter-policies"
+        }
+      ]
+    },
+    {
+      "Id": "defender_inbound_anti_spam_policies",
+      "Description": "Ensure inbound anti-spam policies are configured securely",
+      "Checks": ["defender_inbound_anti_spam_policies"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if inbound anti-spam policies are configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured anti-spam policies can result in increased risk of spam and phishing attacks.",
+          "RemediationProcedure": "Configure inbound anti-spam policies securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review anti-spam policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-your-spam-filter-policies"
+        }
+      ]
+    },
+    {
+      "Id": "defender_malware_policy_common_attachments_filter_enabled",
+      "Description": "Ensure malware policy common attachments filter is enabled",
+      "Checks": ["defender_malware_policy_common_attachments_filter_enabled"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if malware policy common attachments filter is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling common attachments filter can result in increased risk of malware and phishing attacks.",
+          "RemediationProcedure": "Enable common attachments filter in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review malware policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-malware-policies-about"
+        }
+      ]
+    },
+    {
+      "Id": "defender_malware_policy_internal_sender_admin_notifications_enabled",
+      "Description": "Ensure malware policy internal sender admin notifications are enabled",
+      "Checks": ["defender_malware_policy_internal_sender_admin_notifications_enabled"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if malware policy internal sender admin notifications are enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling internal sender admin notifications can result in delayed response to malware incidents.",
+          "RemediationProcedure": "Enable internal sender admin notifications in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review malware policy notification settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-malware-policies-about"
+        }
+      ]
+    },
+    {
+      "Id": "defender_priority_account_protection",
+      "Description": "Ensure priority account protection is enabled",
+      "Checks": ["defender_priority_account_protection"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if priority account protection is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling priority account protection can result in increased risk of targeted attacks on high-value accounts.",
+          "RemediationProcedure": "Enable priority account protection in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review priority account protection settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/priority-account-protection"
+        }
+      ]
+    },
+    {
+      "Id": "defender_safe_attachment_policy_enabled",
+      "Description": "Ensure safe attachment policy is enabled",
+      "Checks": ["defender_safe_attachment_policy_enabled"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if safe attachment policy is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling safe attachment policy can result in increased risk of malware and phishing attacks.",
+          "RemediationProcedure": "Enable safe attachment policy in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review safe attachment policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-attachments-policy"
+        }
+      ]
+    },
+    {
+      "Id": "defender_safelinks_policy_office_apps_enabled",
+      "Description": "Ensure Safe Links policy for Office apps is enabled",
+      "Checks": ["defender_safelinks_policy_office_apps_enabled"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Safe Links policy for Office apps is enabled in Microsoft Defender for Office 365.",
+          "Risk": "Disabling Safe Links policy for Office apps can result in increased risk of phishing attacks.",
+          "RemediationProcedure": "Enable Safe Links policy for Office apps in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review Safe Links policy settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links-policy"
+        }
+      ]
+    },
+    {
+      "Id": "defender_spf_records",
+      "Description": "Ensure SPF records are configured securely",
+      "Checks": ["defender_spf_records"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if SPF records are configured securely in Microsoft Defender for Office 365.",
+          "Risk": "Improperly configured SPF records can result in increased risk of email spoofing and phishing attacks.",
+          "RemediationProcedure": "Configure SPF records securely in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review SPF record settings in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-spf-to-validate-email"
+        }
+      ]
+    },
+    {
+      "Id": "defender_zero_hour_purge_teams",
+      "Description": "Ensure Zero-hour Auto Purge (ZAP) is enabled for Teams",
+      "Checks": ["defender_zero_hour_purge_teams"],
+      "Attributes": [
+        {
+          "Section": "Defender",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Zero-hour Auto Purge (ZAP) is enabled for Teams in Microsoft Defender for Office 365.",
+          "Risk": "Disabling ZAP for Teams can result in increased risk of malware and phishing attacks.",
+          "RemediationProcedure": "Enable ZAP for Teams in Microsoft Defender for Office 365.",
+          "AuditProcedure": "Review ZAP settings for Teams in Microsoft Defender portal.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/zero-hour-auto-purge"
+        }
+      ]
+    },
+    {
+      "Id": "exchange_whitelisted_domains",
+      "Description": "Ensure no unauthorized domains are whitelisted via transport rules",
+      "Checks": ["exchange_whitelisted_domains"],
+      "Attributes": [
+        {
+          "Section": "Exchange",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if any transport rules whitelist unauthorized domains, which can bypass spam filtering.",
+          "Risk": "Whitelisting unauthorized domains can allow malicious emails to bypass security controls.",
+          "RemediationProcedure": "Review and remove any transport rules that whitelist unauthorized domains.",
+          "AuditProcedure": "Review transport rules in Exchange Online.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-transportrule"
+        }
+      ]
+    },
+    {
+      "Id": "purview_dlp_policies_teams",
+      "Description": "Ensure DLP Policies for Teams are Compliant",
+      "Checks": ["purview_dlp_policies_teams"],
+      "Attributes": [
+        {
+          "Section": "Purview",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if DLP policies for Teams workload are enabled and apply to all Teams locations.",
+          "Risk": "If DLP policies for Teams are not enabled or do not apply to all locations, sensitive data may be at risk of exposure.",
+          "RemediationProcedure": "Enable DLP policies for Teams and ensure they apply to all Teams locations.",
+          "AuditProcedure": "Review DLP policy settings for Teams in Microsoft Purview.",
+          "References": "https://learn.microsoft.com/en-us/microsoft-365/compliance/dlp-microsoft-teams?view=o365-worldwide"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_guest_sharing_restricted",
+      "Description": "Ensure that SharePoint guest users cannot share items they don't own.",
+      "Checks": ["sharepoint_guest_sharing_restricted"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that guest users in SharePoint cannot share items they do not own, preventing unauthorized disclosure of shared content.",
+          "Risk": "If guest users are allowed to share items they don't own, there is a higher risk of unauthorized data exposure, as external users could share content beyond intended recipients.",
+          "RemediationProcedure": "Restrict guest users from sharing items they don't own to enhance security and prevent unauthorized access.",
+          "AuditProcedure": "Review guest sharing settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_modern_authentication_required",
+      "Description": "Ensure modern authentication for SharePoint applications is required.",
+      "Checks": ["sharepoint_modern_authentication_required"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "Critical",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that modern authentication is required for SharePoint applications in Microsoft 365, preventing the use of legacy authentication protocols and blocking access to apps that don't use modern authentication.",
+          "Risk": "If modern authentication is not enforced, SharePoint applications may rely on basic authentication, which lacks strong security measures like MFA and increases the risk of credential theft.",
+          "RemediationProcedure": "Block access for SharePoint applications that don't use modern authentication to ensure secure authentication mechanisms.",
+          "AuditProcedure": "Review authentication settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_external_sharing_managed",
+      "Description": "Ensure SharePoint external sharing is managed through domain whitelists/blacklists.",
+      "Checks": ["sharepoint_external_sharing_managed"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Control the sharing of documents to external domains by either blocking specific domains or only allowing sharing with named trusted domains.",
+          "Risk": "If domain-based sharing restrictions are not enforced, users may share documents with untrusted external entities, increasing the risk of data exfiltration or unauthorized access.",
+          "RemediationProcedure": "Enforce domain-based restrictions for SharePoint external sharing to control document sharing with trusted domains.",
+          "AuditProcedure": "Review external sharing domain restrictions in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "sharepoint_external_sharing_restricted",
+      "Description": "Ensure external content sharing is restricted.",
+      "Checks": ["sharepoint_external_sharing_restricted"],
+      "Attributes": [
+        {
+          "Section": "SharePoint",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Ensure that external sharing settings in SharePoint are restricted to 'New and existing guests' or a less permissive level to enforce authentication and control over shared content.",
+          "Risk": "If external sharing is not restricted, unauthorized users may gain access to sensitive information, increasing the risk of data breaches and compliance violations.",
+          "RemediationProcedure": "Restrict external sharing in SharePoint to 'New and existing guests' or a more restrictive setting to enhance security.",
+          "AuditProcedure": "Review external sharing settings in SharePoint admin center.",
+          "References": "https://learn.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_file_sharing",
+      "Description": "Ensure external file sharing is restricted in Teams",
+      "Checks": ["teams_external_file_sharing"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external file sharing is restricted to trusted users or domains in Teams.",
+          "Risk": "Unrestricted external file sharing can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict external file sharing to trusted users or domains only.",
+          "AuditProcedure": "Review Teams external sharing settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/sharing-files-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_non_trusted_meeting_chat",
+      "Description": "Ensure chat with external non-trusted users is restricted in Teams meetings",
+      "Checks": ["teams_external_non_trusted_meeting_chat"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if chat with external non-trusted users is restricted in Teams meetings.",
+          "Risk": "Allowing chat with external non-trusted users can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict chat with external non-trusted users in Teams meetings.",
+          "AuditProcedure": "Review Teams meeting policy settings for chat.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_participant_give_control",
+      "Description": "Ensure external participants cannot give control in Teams meetings",
+      "Checks": ["teams_external_participant_give_control"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external participants are prevented from giving control in Teams meetings.",
+          "Risk": "Allowing external participants to give control can result in unauthorized access or disruption.",
+          "RemediationProcedure": "Prevent external participants from giving control in Teams meetings.",
+          "AuditProcedure": "Review Teams meeting policy settings for control sharing.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_external_teams_communication",
+      "Description": "Ensure external Teams communication is restricted",
+      "Checks": ["teams_external_teams_communication"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if external Teams communication is restricted to trusted organizations.",
+          "Risk": "Unrestricted external Teams communication can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict external Teams communication to trusted organizations only.",
+          "AuditProcedure": "Review Teams external access settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    },
+    {
+      "Id": "teams_federation_configuration",
+      "Description": "Ensure Teams federation configuration is secure",
+      "Checks": ["teams_federation_configuration"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams federation configuration is secure and only allows trusted domains.",
+          "Risk": "Improper federation configuration can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Configure Teams federation to only allow trusted domains.",
+          "AuditProcedure": "Review Teams federation settings.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    },
+    {
+      "Id": "teams_meeting_chat_enabled",
+      "Description": "Ensure Teams meeting chat is enabled only for trusted users",
+      "Checks": ["teams_meeting_chat_enabled"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams meeting chat is enabled only for trusted users or domains.",
+          "Risk": "Unrestricted meeting chat can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict meeting chat to trusted users or domains only.",
+          "AuditProcedure": "Review Teams meeting policy settings for chat.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_presenter_settings",
+      "Description": "Ensure Teams presenter settings are restricted",
+      "Checks": ["teams_presenter_settings"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "High",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams presenter settings are restricted to trusted users or domains.",
+          "Risk": "Unrestricted presenter settings can result in unauthorized users presenting in meetings.",
+          "RemediationProcedure": "Restrict presenter settings to trusted users or domains only.",
+          "AuditProcedure": "Review Teams meeting policy settings for presenters.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-in-teams"
+        }
+      ]
+    },
+    {
+      "Id": "teams_skype_communication",
+      "Description": "Ensure Teams-Skype communication is restricted",
+      "Checks": ["teams_skype_communication"],
+      "Attributes": [
+        {
+          "Section": "Teams",
+          "Profile": "Medium",
+          "AssessmentStatus": "Automated",
+          "Description": "Checks if Teams-Skype communication is restricted to trusted users or domains.",
+          "Risk": "Unrestricted Teams-Skype communication can result in data leakage or compliance violations.",
+          "RemediationProcedure": "Restrict Teams-Skype communication to trusted users or domains only.",
+          "AuditProcedure": "Review Teams external access settings for Skype.",
+          "References": "https://learn.microsoft.com/en-us/microsoftteams/manage-external-access"
+        }
+      ]
+    }
+  ]
+}

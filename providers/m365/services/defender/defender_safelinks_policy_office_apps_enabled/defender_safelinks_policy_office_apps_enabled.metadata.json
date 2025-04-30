@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_safelinks_policy_office_apps_enabled",
+  "CheckTitle": "Ensure SafeLinks for Office Apps is enabled and configured correctly.",
+  "CheckType": [],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "critical",
+  "ResourceType": "SafeLinks Policy",
+  "Description": "Ensure that SafeLinks for Office Apps is enabled and all recommended settings are configured in each SafeLinks policy.",
+  "Risk": "If SafeLinks for Office Apps is not properly configured, users may be exposed to malicious links in Office documents, increasing the risk of phishing and malware attacks.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links-policies-configure?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-SafeLinksPolicy -Identity <PolicyName> -EnableSafeLinksForOffice $true -EnableSafeLinksForEmail $true -EnableSafeLinksForTeams $true -TrackClicks $true -AllowClickThrough $false -ScanUrls $true -EnableForInternalSenders $true -DeliverMessageAfterScan $true -DisableUrlRewrite $false",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Safe Links. 4. Edit each policy and ensure all recommended settings are enabled as described.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable and properly configure SafeLinks for Office Apps and related settings in all SafeLinks policies.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-safelinkspolicy?view=exchange-ps"
+    }
+  },
+  "Categories": ["security", "policy", "malware"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all recommended SafeLinks settings are enabled for Office Apps."
+} 

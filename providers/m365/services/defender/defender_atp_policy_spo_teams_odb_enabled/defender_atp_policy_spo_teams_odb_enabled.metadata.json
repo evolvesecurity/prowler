@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_atp_policy_spo_teams_odb_enabled",
+  "CheckTitle": "Ensure ATP Policy for SharePoint, OneDrive, and Teams is correctly configured.",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "ATP Policy for O365",
+  "Description": "Checks if ATP Policy for O365 is configured with EnableATPForSPOTeamsODB and EnableSafeDocs enabled, and AllowSafeDocsOpen disabled.",
+  "Risk": "If ATP Policy for SharePoint, OneDrive, and Teams is not correctly configured, users may be exposed to malicious files and unsafe document handling.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/atp-safe-attachments?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-AtpPolicyForO365 -Identity <PolicyName> -EnableATPForSPOTeamsODB $true -EnableSafeDocs $true -AllowSafeDocsOpen $false",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Safe Attachments. 4. Edit the ATP Policy for O365 and ensure the correct settings for SharePoint, OneDrive, and Teams.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable ATP for SharePoint, OneDrive, and Teams, enable SafeDocs, and disable AllowSafeDocsOpen in the ATP Policy for O365.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-atppolicyforo365?view=exchange-ps"
+    }
+  },
+  "Categories": ["security", "malware", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that ATP Policy for SharePoint, OneDrive, and Teams is correctly configured."
+} 

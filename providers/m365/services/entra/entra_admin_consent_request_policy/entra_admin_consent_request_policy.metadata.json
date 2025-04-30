@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_admin_consent_request_policy",
+  "CheckTitle": "Ensure Admin Consent Request Policy is Enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Admin Consent Request Policy",
+  "Description": "Checks if the Admin Consent Request Policy is enabled in the tenant.",
+  "Risk": "If the Admin Consent Request Policy is disabled, users may not be able to request admin consent for applications, reducing oversight and increasing risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-admin-consent-workflow",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgPolicyAdminConsentRequestPolicy -IsEnabled $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Enterprise applications > Admin consent requests. 3. Enable the admin consent workflow.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable the Admin Consent Request Policy to allow users to request admin consent for applications.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-admin-consent-workflow"
+    }
+  },
+  "Categories": ["security", "consent", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the Admin Consent Request Policy is enabled in the tenant."
+} 

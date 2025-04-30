@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_spf_records",
+  "CheckTitle": "Ensure SPF Records Exist for All Domains",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Domain",
+  "Description": "Checks if all domains in DKIM configuration have a valid SPF record including spf.protection.outlook.com.",
+  "Risk": "If SPF records are missing or misconfigured, your domains are more susceptible to email spoofing and phishing attacks.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/set-up-spf-in-office-365-to-help-prevent-spoofing?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Add a TXT record to your domain's DNS with the value: v=spf1 include:spf.protection.outlook.com -all",
+      "NativeIaC": "",
+      "Other": "1. Go to your DNS provider. 2. Add or update the TXT record for SPF as recommended by Microsoft 365. 3. Ensure it includes 'v=spf1 include:spf.protection.outlook.com -all'.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure all domains used for email have a valid SPF record including spf.protection.outlook.com.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/set-up-spf-in-office-365-to-help-prevent-spoofing?view=o365-worldwide"
+    }
+  },
+  "Categories": ["security", "spf", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all domains in DKIM configuration have a valid SPF record."
+} 

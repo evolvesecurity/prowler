@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_safe_attachment_policy_enabled",
+  "CheckTitle": "Ensure at least one Safe Attachment Policy is enabled.",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Safe Attachment Policy",
+  "Description": "Checks if at least one Safe Attachment Policy is enabled in Exchange Online.",
+  "Risk": "If no Safe Attachment Policy is enabled, users may be exposed to malicious attachments, increasing the risk of malware infection.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-attachments-policies-configure?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-SafeAttachmentPolicy -Identity <PolicyName> -Enable $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Safe Attachments. 4. Edit or create a policy and enable it.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable at least one Safe Attachment Policy to protect users from malicious attachments.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-safeattachmentpolicy?view=exchange-ps"
+    }
+  },
+  "Categories": ["security", "malware", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that at least one Safe Attachment Policy is enabled."
+} 

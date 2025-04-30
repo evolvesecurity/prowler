@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_dynamic_guest_group",
+  "CheckTitle": "Ensure Dynamic Guest Groups Exist",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Group",
+  "Description": "Checks if there are any groups with dynamic membership (Dynamic Guest Groups) in the tenant.",
+  "Risk": "If no dynamic guest groups exist, guest access may not be managed dynamically, increasing administrative overhead or risk of misconfiguration.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership",
+  "Remediation": {
+    "Code": {
+      "CLI": "New-MgGroup -DisplayName <Name> -GroupTypes 'DynamicMembership' -MailEnabled $false -SecurityEnabled $true -MembershipRule <Rule> -MembershipRuleProcessingState 'On'",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Groups. 3. Create a new group with dynamic membership for guests.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Create and use dynamic guest groups to manage guest access dynamically.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership"
+    }
+  },
+  "Categories": ["security", "groups", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that dynamic guest groups exist in the tenant."
+} 

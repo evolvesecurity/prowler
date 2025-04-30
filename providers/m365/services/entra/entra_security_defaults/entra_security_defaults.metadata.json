@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_security_defaults",
+  "CheckTitle": "Ensure Security Defaults are Disabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Security Default Enforcement Policy",
+  "Description": "Checks if Security Defaults are disabled in the tenant.",
+  "Risk": "If Security Defaults are enabled, it may enforce baseline security policies that could conflict with custom security configurations or advanced conditional access policies.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/concept-fundamentals-security-defaults",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgPolicyIdentitySecurityDefaultEnforcementPolicy -IsEnabled $false",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Properties > Manage Security defaults. 3. Set 'Enable Security defaults' to No.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable Security Defaults if you require custom security policies or advanced configurations.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/concept-fundamentals-security-defaults"
+    }
+  },
+  "Categories": ["security", "defaults", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Security Defaults are disabled in the tenant."
+} 

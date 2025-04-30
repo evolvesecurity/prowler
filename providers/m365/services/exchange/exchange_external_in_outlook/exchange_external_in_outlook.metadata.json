@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_external_in_outlook",
+  "CheckTitle": "Ensure 'External in Outlook' is enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Microsoft.Exchange/ExternalInOutlook",
+  "Description": "Checks if the 'External in Outlook' feature is enabled to help users identify external senders.",
+  "Risk": "If disabled, users may not be able to easily identify emails from external senders, increasing phishing risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/external-in-outlook",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-ExternalInOutlook -Enabled $true",
+      "NativeIaC": "",
+      "Other": "Enable the 'External in Outlook' feature in Exchange Online.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable the 'External in Outlook' feature in Exchange Online.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/external-in-outlook"
+    }
+  },
+  "Categories": ["security", "exchange", "phishing"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the 'External in Outlook' feature is enabled."
+} 

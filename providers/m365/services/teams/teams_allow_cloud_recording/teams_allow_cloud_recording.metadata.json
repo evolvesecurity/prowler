@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_allow_cloud_recording",
+  "CheckTitle": "Ensure Allow Cloud Recording is disabled in Teams Meetings",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/MeetingPolicy",
+  "Description": "Checks if cloud recording is disabled in Teams meetings.",
+  "Risk": "Allowing cloud recording can result in unauthorized or accidental recording of sensitive meetings.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMeetingPolicy -Identity Global -AllowCloudRecording $false",
+      "NativeIaC": "",
+      "Other": "Disable AllowCloudRecording in the global meeting policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable AllowCloudRecording in the global meeting policy.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+    }
+  },
+  "Categories": ["security", "teams", "meetings"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that cloud recording is disabled in Teams meetings."
+} 

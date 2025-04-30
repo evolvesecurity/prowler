@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_internal_phishing_protection",
+  "CheckTitle": "Check Internal Phishing Protection (Forms)",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "FormsSettings",
+  "Severity": "high",
+  "Risk": "Disabling internal phishing protection may allow malicious forms to be distributed within the organization.",
+  "Categories": ["identity", "policy", "phishing"],
+  "Description": "Checks if internal phishing protection is enabled in Microsoft Forms settings.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Enable internal phishing protection in Microsoft Forms settings.",
+    "Recommendation": {
+      "Text": "Review and configure Forms settings to enable internal phishing protection.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-forms/phishing-protection"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/graph/api/admin-formssettings-get?view=graph-rest-beta",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that internal phishing protection is enabled in Microsoft Forms."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_external_participant_give_control",
+  "CheckTitle": "Ensure External Participant Give Control is disabled in Teams Meetings",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/MeetingPolicy",
+  "Description": "Checks if external participants are prevented from giving control in Teams meetings.",
+  "Risk": "Allowing external participants to give control can increase the risk of unauthorized access or actions during meetings.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMeetingPolicy -Identity Global -AllowExternalParticipantGiveRequestControl $false",
+      "NativeIaC": "",
+      "Other": "Disable AllowExternalParticipantGiveRequestControl in the global meeting policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable AllowExternalParticipantGiveRequestControl in the global meeting policy.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+    }
+  },
+  "Categories": ["security", "teams", "meetings"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that external participants cannot give control in Teams meetings."
+} 

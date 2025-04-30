@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_external_sharing",
+  "CheckTitle": "Check External Sharing Policy (Default Sharing Policy)",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "SharingPolicy",
+  "Severity": "high",
+  "Risk": "External sharing enabled may expose sensitive calendar information to unauthorized users.",
+  "Categories": ["identity", "policy", "sharing"],
+  "Description": "Checks if the Default Sharing Policy for Exchange Online is enabled (external calendar sharing).",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Disable external sharing in the Default Sharing Policy unless explicitly required.",
+    "Recommendation": {
+      "Text": "Review and configure the Default Sharing Policy to restrict external calendar sharing.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/sharing/sharing-policies/sharing-policies"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-sharingpolicy",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that external calendar sharing is not enabled unless necessary."
+} 

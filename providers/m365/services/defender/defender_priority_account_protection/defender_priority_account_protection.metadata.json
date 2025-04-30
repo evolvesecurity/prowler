@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_priority_account_protection",
+  "CheckTitle": "Ensure Priority Account Protection is Enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Email Tenant Settings",
+  "Description": "Checks if Priority Account Protection is enabled in Email Tenant Settings.",
+  "Risk": "If Priority Account Protection is not enabled, high-value accounts may be more vulnerable to targeted attacks.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/priority-account-protection?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-EmailTenantSettings -EnablePriorityAccountProtection $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Settings, enable Priority Account Protection.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable Priority Account Protection in Email Tenant Settings for enhanced security of high-value accounts.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-emailtenantsettings"
+    }
+  },
+  "Categories": ["security", "priority-account", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Priority Account Protection is enabled in Email Tenant Settings."
+} 

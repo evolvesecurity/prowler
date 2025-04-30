@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_sway_sharing",
+  "CheckTitle": "Manual Check: Sway Sharing",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Manual"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "SwaySettings",
+  "Severity": "medium",
+  "Risk": "Allowing Sway sharing may expose sensitive content to unauthorized users.",
+  "Categories": ["identity", "policy", "sharing"],
+  "Description": "Manual check to verify that Sway sharing is not allowed in the organization.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Manually verify that 'Let people in the organization share their sways' is NOT checked in the Sway admin settings.",
+    "Recommendation": {
+      "Text": "Review and configure Sway sharing settings to restrict sharing as appropriate.",
+      "Url": "https://admin.microsoft.com/#/Settings/Services/:/Settings/L1/Sway"
+    }
+  },
+  "RelatedUrl": "https://admin.microsoft.com/#/Settings/Services/:/Settings/L1/Sway",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This is a manual check. Visit the provided link and ensure Sway sharing is not allowed."
+} 

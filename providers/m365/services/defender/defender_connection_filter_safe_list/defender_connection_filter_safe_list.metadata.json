@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_connection_filter_safe_list",
+  "CheckTitle": "Ensure Connection Filter Safe List is Disabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Connection Filter Policy",
+  "Description": "Checks if the EnableSafeList property in the Default Hosted Connection Filter Policy is set to False.",
+  "Risk": "If EnableSafeList is enabled, it may allow unwanted or risky senders to bypass anti-spam protections.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-the-connection-filter-policy?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-HostedConnectionFilterPolicy -Identity Default -EnableSafeList $false",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-spam. 4. Edit the Default policy and disable the Safe List.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable the Safe List in the Default Hosted Connection Filter Policy unless there is a specific, justified need.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-hostedconnectionfilterpolicy"
+    }
+  },
+  "Categories": ["security", "connection-filter", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the Safe List is disabled in the Default Hosted Connection Filter Policy."
+} 

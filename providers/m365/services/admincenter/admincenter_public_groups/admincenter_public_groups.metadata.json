@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_public_groups",
+  "CheckTitle": "List all public Microsoft 365 groups",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "Group",
+  "Severity": "medium",
+  "Risk": "Public groups may expose sensitive information to all users in the organization.",
+  "Categories": ["identity", "group", "exposure"],
+  "Description": "Lists all Microsoft 365 groups with Visibility set to 'Public'.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Review public groups and change their visibility to 'Private' if they should not be accessible to all users.",
+    "Recommendation": {
+      "Text": "Restrict group visibility to only those who need access.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-365/admin/create-groups/manage-groups?view=o365-worldwide"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.groups/get-mggroup",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps identify groups that are publicly visible and may need review."
+} 

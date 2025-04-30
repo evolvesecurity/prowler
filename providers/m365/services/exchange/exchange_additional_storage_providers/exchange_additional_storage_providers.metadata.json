@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_additional_storage_providers",
+  "CheckTitle": "Ensure Additional Storage Providers are disabled in OWA Mailbox Policy",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Microsoft.Exchange/OWAMailboxPolicy",
+  "Description": "Checks if Additional Storage Providers are disabled in OWA Mailbox Policy.",
+  "Risk": "Allowing additional storage providers in OWA can expose sensitive data to third-party services.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-owamailboxpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-OwaMailboxPolicy -Identity <PolicyName> -AdditionalStorageProvidersAvailable $false",
+      "NativeIaC": "",
+      "Other": "Set AdditionalStorageProvidersAvailable to False in all OWA Mailbox Policies.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Set AdditionalStorageProvidersAvailable to False in all OWA Mailbox Policies.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-owamailboxpolicy"
+    }
+  },
+  "Categories": ["security", "exchange", "owa"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Additional Storage Providers are disabled in OWA Mailbox Policies."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_audit_disabled",
+  "CheckTitle": "Ensure mailbox audit logging is enabled for all mailboxes",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/Mailbox",
+  "Description": "Checks if mailbox audit logging is enabled for all mailboxes in Exchange Online.",
+  "Risk": "If mailbox audit logging is disabled, malicious or unauthorized mailbox activity may go undetected.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-Mailbox -Identity <MailboxIdentity> -AuditEnabled $true",
+      "NativeIaC": "",
+      "Other": "Enable mailbox audit logging for all mailboxes using Set-Mailbox -AuditEnabled $true.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable mailbox audit logging for all mailboxes using Set-Mailbox -AuditEnabled $true.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox"
+    }
+  },
+  "Categories": ["security", "exchange", "audit"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that mailbox audit logging is enabled for all mailboxes."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_audit_bypass_enabled",
+  "CheckTitle": "Ensure no mailboxes have Audit Bypass enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/Mailbox",
+  "Description": "Checks if any mailboxes have Audit Bypass enabled.",
+  "Risk": "Mailboxes with Audit Bypass enabled may not be audited, leading to undetected malicious activity.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/remove-mailboxauditbypassassociation",
+  "Remediation": {
+    "Code": {
+      "CLI": "Remove-MailboxAuditBypassAssociation -Identity <MailboxIdentity>",
+      "NativeIaC": "",
+      "Other": "Remove Audit Bypass for all mailboxes using Remove-MailboxAuditBypassAssociation.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Remove Audit Bypass for all mailboxes using Remove-MailboxAuditBypassAssociation.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/remove-mailboxauditbypassassociation"
+    }
+  },
+  "Categories": ["security", "exchange", "audit"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that no mailboxes have Audit Bypass enabled."
+} 

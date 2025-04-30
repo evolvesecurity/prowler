@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_mfa_status_admin_roles",
+  "CheckTitle": "Ensure MFA Status for Admin Roles is Monitored",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Admin Roles",
+  "Description": "Checks if MFA status for admin roles is monitored and data is available.",
+  "Risk": "If MFA status for admin roles is not monitored, privileged accounts may be at risk of compromise.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings",
+  "Remediation": {
+    "Code": {
+      "CLI": "Invoke-MgGraphRequest -Uri 'https://graph.microsoft.com/beta/security/secureScores' -Method GET",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > MFA. 3. Review MFA status for admin roles.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Monitor and enforce MFA for all admin roles to reduce risk of compromise.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings"
+    }
+  },
+  "Categories": ["security", "mfa", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that MFA status for admin roles is monitored and data is available."
+} 

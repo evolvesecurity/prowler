@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_external_file_sharing",
+  "CheckTitle": "Ensure external file sharing providers are disabled in Teams",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/ClientConfiguration",
+  "Description": "Checks if external file sharing providers (Dropbox, Box, Google Drive, ShareFile, Egnyte) are disabled in Teams.",
+  "Risk": "Enabling external file sharing providers can lead to data exfiltration and compliance violations.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsclientconfiguration",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsClientConfiguration -AllowDropbox $false -AllowBox $false -AllowGoogleDrive $false -AllowShareFile $false -AllowEgnyte $false",
+      "NativeIaC": "",
+      "Other": "Disable all external file sharing providers in Teams client configuration.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable all external file sharing providers in Teams client configuration.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsclientconfiguration"
+    }
+  },
+  "Categories": ["security", "teams", "filesharing"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all external file sharing providers are disabled in Teams."
+} 

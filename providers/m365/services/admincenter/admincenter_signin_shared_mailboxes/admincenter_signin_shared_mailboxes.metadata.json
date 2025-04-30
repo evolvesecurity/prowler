@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_signin_shared_mailboxes",
+  "CheckTitle": "Detect sign-in enabled for Shared Mailboxes",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "Mailbox",
+  "Severity": "high",
+  "Risk": "Shared mailboxes with sign-in enabled may allow unauthorized access or misuse.",
+  "Categories": ["identity", "mailbox", "exposure"],
+  "Description": "Detects if any shared mailboxes have sign-in enabled (AccountEnabled=True).",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Disable sign-in for shared mailboxes unless explicitly required.",
+    "Recommendation": {
+      "Text": "Ensure shared mailboxes do not have sign-in enabled unless necessary.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-user-mailboxes/disable-or-enable-mailbox-features"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-exomailbox",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps identify shared mailboxes that may be at risk due to sign-in being enabled."
+} 

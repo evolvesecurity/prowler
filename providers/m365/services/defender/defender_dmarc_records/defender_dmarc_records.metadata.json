@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_dmarc_records",
+  "CheckTitle": "Ensure DMARC Records Exist for All Domains",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Domain",
+  "Description": "Checks if all domains in DKIM configuration have a valid DMARC TXT record.",
+  "Risk": "If DMARC records are missing, your domains are more susceptible to email spoofing, phishing, and lack of reporting on fraudulent email activity.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-dmarc-to-validate-email?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Add a TXT record to your domain's DNS with the value: v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@yourdomain.com",
+      "NativeIaC": "",
+      "Other": "1. Go to your DNS provider. 2. Add or update the TXT record for DMARC as recommended by Microsoft 365. 3. Ensure it includes 'v=DMARC1; p=quarantine' or a stricter policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure all domains used for email have a valid DMARC TXT record.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-dmarc-to-validate-email?view=o365-worldwide"
+    }
+  },
+  "Categories": ["security", "dmarc", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all domains in DKIM configuration have a valid DMARC TXT record."
+} 

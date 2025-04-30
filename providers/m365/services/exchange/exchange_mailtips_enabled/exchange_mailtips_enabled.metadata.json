@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_mailtips_enabled",
+  "CheckTitle": "Ensure MailTips are enabled for all users",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "low",
+  "ResourceType": "Microsoft.Exchange/OrganizationConfig",
+  "Description": "Checks if MailTips are enabled to provide helpful information to users when composing messages.",
+  "Risk": "Disabling MailTips may result in users missing important information or warnings when sending emails.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/mailtips/mailtips",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-OrganizationConfig -MailTipsAllTipsEnabled $true -MailTipsExternalRecipientsTipsEnabled $true -MailTipsGroupMetricsEnabled $true",
+      "NativeIaC": "",
+      "Other": "Enable MailTips for all users in the organization.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable MailTips for all users in the organization.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/mailtips/mailtips"
+    }
+  },
+  "Categories": ["usability", "exchange", "mailtips"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that MailTips are enabled for all users."
+} 

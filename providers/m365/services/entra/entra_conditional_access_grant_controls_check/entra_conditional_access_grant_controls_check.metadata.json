@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_conditional_access_grant_controls_check",
+  "CheckTitle": "Ensure Conditional Access Policies Have Authentication Strength Configured in Grant Controls",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Conditional Access Policy",
+  "Description": "Checks if at least one enabled Conditional Access policy has authentication strength configured in grantControls.",
+  "Risk": "If no enabled Conditional Access policies have authentication strength configured, authentication requirements may be insufficient.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-authentication-strength",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgIdentityConditionalAccessPolicy -Id <PolicyId> -GrantControls <GrantControls>",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > Conditional Access. 3. Edit policies to configure authentication strength in grant controls.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Configure authentication strength in grant controls for Conditional Access policies.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-authentication-strength"
+    }
+  },
+  "Categories": ["security", "grant", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that at least one enabled Conditional Access policy has authentication strength configured in grant controls."
+} 

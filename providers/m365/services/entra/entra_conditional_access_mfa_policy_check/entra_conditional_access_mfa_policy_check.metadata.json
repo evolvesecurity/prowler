@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_conditional_access_mfa_policy_check",
+  "CheckTitle": "Ensure Conditional Access MFA Policies Apply to All Users with No Exclusions",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Conditional Access Policy",
+  "Description": "Checks if enabled Conditional Access policies with 'MFA' in their name apply to all users with no exclusions.",
+  "Risk": "If Conditional Access MFA policies have exclusions, some users may not be protected by MFA, increasing risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-all-users",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgIdentityConditionalAccessPolicy -Id <PolicyId> -Conditions <UpdatedConditions>",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > Conditional Access. 3. Edit policies to ensure no exclusions.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure all enabled Conditional Access MFA policies apply to all users with no exclusions.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-all-users"
+    }
+  },
+  "Categories": ["security", "mfa", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all enabled Conditional Access MFA policies apply to all users with no exclusions."
+} 

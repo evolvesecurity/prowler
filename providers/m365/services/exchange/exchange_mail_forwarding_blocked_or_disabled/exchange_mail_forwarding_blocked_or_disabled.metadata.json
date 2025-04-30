@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_mail_forwarding_blocked_or_disabled",
+  "CheckTitle": "Ensure mail forwarding is blocked or disabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/TransportRule",
+  "Description": "Checks if mail forwarding is blocked or disabled via transport rules and spam filter policies.",
+  "Risk": "Unrestricted mail forwarding can lead to data exfiltration and information leakage.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/exchange/security-and-compliance/mail-flow-rules/redirect-messages",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-TransportRule -Identity <RuleName> -RedirectMessageTo $null; Set-HostedOutboundSpamFilterPolicy -Identity <PolicyName> -AutoForwardingMode Off",
+      "NativeIaC": "",
+      "Other": "Block or disable mail forwarding using transport rules and set AutoForwardingMode to 'Off' in spam filter policies.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Block or disable mail forwarding using transport rules and set AutoForwardingMode to 'Off' in spam filter policies.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/security-and-compliance/mail-flow-rules/redirect-messages"
+    }
+  },
+  "Categories": ["security", "exchange", "mailflow"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that mail forwarding is blocked or disabled via transport rules and spam filter policies."
+} 

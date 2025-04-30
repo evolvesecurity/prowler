@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_mailbox_auditing_e3_users",
+  "CheckTitle": "Ensure mailbox auditing is enabled for all E3 users",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/Mailbox",
+  "Description": "Checks if mailbox auditing is enabled for all users with an E3 license in Exchange Online.",
+  "Risk": "If mailbox auditing is disabled for E3 users, malicious or unauthorized mailbox activity may go undetected.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-Mailbox -Identity <MailboxIdentity> -AuditEnabled $true",
+      "NativeIaC": "",
+      "Other": "Enable mailbox audit logging for all E3 mailboxes using Set-Mailbox -AuditEnabled $true.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable mailbox audit logging for all E3 mailboxes using Set-Mailbox -AuditEnabled $true.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-mailbox"
+    }
+  },
+  "Categories": ["security", "exchange", "audit"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that mailbox audit logging is enabled for all E3 mailboxes."
+} 

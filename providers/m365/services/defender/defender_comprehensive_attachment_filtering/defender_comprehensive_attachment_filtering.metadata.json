@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_comprehensive_attachment_filtering",
+  "CheckTitle": "Ensure Comprehensive Attachment Filtering is Enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Malware Filter Policy",
+  "Description": "Checks if malware filter policies include all required L2 extensions for comprehensive attachment filtering.",
+  "Risk": "If required extensions are missing from malware filter policies, malicious attachments may bypass filtering, increasing the risk of malware infection.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-malware-policies-about?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-MalwareFilterPolicy -Identity <PolicyName> -FileTypes <comma-separated-list-of-extensions>",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-malware. 4. Edit the policy and ensure all required extensions are included.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Include all recommended L2 extensions in malware filter policies for comprehensive attachment filtering.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-malwarefilterpolicy"
+    }
+  },
+  "Categories": ["security", "malware", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all required L2 extensions are present in malware filter policies."
+} 

@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_global_admins_count",
+  "CheckTitle": "Ensure the number of Global Admins is not excessive",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "User",
+  "Severity": "high",
+  "Risk": "Too many global admins increases risk of privilege misuse.",
+  "Categories": ["identity", "privilege"],
+  "Description": "Checks the number of Global Administrators in the tenant.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Reduce the number of Global Admins to the minimum necessary.",
+    "Recommendation": {
+      "Text": "Review and remove unnecessary Global Admin assignments.",
+      "Url": "https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference"
+    }
+  },
+  "RelatedUrl": "https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": ""
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_lobby_bypass",
+  "CheckTitle": "Ensure Teams lobby bypass is restricted to EveryoneInCompanyExcludingGuests",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/MeetingPolicy",
+  "Description": "Checks if Teams lobby bypass is restricted to EveryoneInCompanyExcludingGuests in the global meeting policy.",
+  "Risk": "Allowing lobby bypass for more than EveryoneInCompanyExcludingGuests can expose meetings to unauthorized access.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMeetingPolicy -Identity Global -AutoAdmittedUsers EveryoneInCompanyExcludingGuests",
+      "NativeIaC": "",
+      "Other": "Restrict Teams lobby bypass to EveryoneInCompanyExcludingGuests in the global meeting policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Restrict Teams lobby bypass to EveryoneInCompanyExcludingGuests in the global meeting policy.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+    }
+  },
+  "Categories": ["security", "teams", "meetings"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Teams lobby bypass is restricted to EveryoneInCompanyExcludingGuests."
+} 

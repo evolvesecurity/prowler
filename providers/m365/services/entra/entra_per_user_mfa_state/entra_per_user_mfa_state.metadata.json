@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_per_user_mfa_state",
+  "CheckTitle": "Ensure Per-User MFA is Enabled for All Users",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "User",
+  "Description": "Checks if per-user MFA is enabled for all users in the tenant.",
+  "Risk": "If per-user MFA is not enabled for all users, accounts are more susceptible to compromise via phishing or credential theft.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-userstates",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgUserAuthenticationMethod -UserId <UserId> -MethodType 'mfa' -State enabled",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Users. 3. Select a user and enable MFA under Authentication methods.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable per-user MFA for all users in the tenant.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-userstates"
+    }
+  },
+  "Categories": ["security", "mfa", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that per-user MFA is enabled for all users in the tenant."
+} 

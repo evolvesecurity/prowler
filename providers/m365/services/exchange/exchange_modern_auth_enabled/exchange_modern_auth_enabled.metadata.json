@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_modern_auth_enabled",
+  "CheckTitle": "Ensure Modern Authentication is enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/OrganizationConfig",
+  "Description": "Checks if Modern Authentication (OAuth2) is enabled for Exchange Online.",
+  "Risk": "Disabling Modern Authentication increases the risk of credential theft and legacy protocol abuse.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/enable-or-disable-modern-authentication-in-exchange-online",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-OrganizationConfig -OAuth2ClientProfileEnabled $true",
+      "NativeIaC": "",
+      "Other": "Enable Modern Authentication (OAuth2ClientProfileEnabled) in Exchange Online.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable Modern Authentication (OAuth2ClientProfileEnabled) in Exchange Online.",
+      "Url": "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/enable-or-disable-modern-authentication-in-exchange-online"
+    }
+  },
+  "Categories": ["security", "exchange", "authentication"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Modern Authentication is enabled in Exchange Online."
+} 

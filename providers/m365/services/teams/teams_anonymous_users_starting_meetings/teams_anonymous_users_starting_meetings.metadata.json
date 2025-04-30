@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_anonymous_users_starting_meetings",
+  "CheckTitle": "Ensure Anonymous Users Starting Teams Meetings is disabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/MeetingPolicy",
+  "Description": "Checks if anonymous users are prevented from starting Teams meetings.",
+  "Risk": "Allowing anonymous users to start meetings can expose the organization to unauthorized access and data leakage.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMeetingPolicy -Identity Global -AllowAnonymousUsersToStartMeeting $false",
+      "NativeIaC": "",
+      "Other": "Disable anonymous users from starting Teams meetings in the global meeting policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable anonymous users from starting Teams meetings in the global meeting policy.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+    }
+  },
+  "Categories": ["security", "teams", "meetings"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that anonymous users are not allowed to start Teams meetings."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_federation_configuration",
+  "CheckTitle": "Ensure Teams Federation Configuration is appropriately restricted",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/TenantFederationConfiguration",
+  "Description": "Checks if Teams Federation is disabled or restricted to authorized domains only.",
+  "Risk": "Allowing federation with all known domains or not specifying allowed domains can expose the organization to external threats.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-cstenantfederationconfiguration",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTenantFederationConfiguration -AllowFederatedUsers $false -AllowedDomains @()",
+      "NativeIaC": "",
+      "Other": "Disable federation or restrict to authorized domains only in Teams Tenant Federation Configuration.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable federation or restrict to authorized domains only in Teams Tenant Federation Configuration.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-cstenantfederationconfiguration"
+    }
+  },
+  "Categories": ["security", "teams", "federation"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Teams Federation is disabled or restricted to authorized domains only."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_zero_hour_purge_teams",
+  "CheckTitle": "Ensure Zero Hour Purge (ZAP) is Enabled for Teams",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Teams Protection Policy",
+  "Description": "Checks if ZapEnabled is set to true for all Teams Protection Policies.",
+  "Risk": "If ZAP is not enabled, malicious messages may not be purged from Teams, increasing the risk of malware or phishing.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/zero-hour-auto-purge?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-TeamsProtectionPolicy -Identity <PolicyName> -ZapEnabled $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Teams Protection. 4. Edit each policy and enable ZAP.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable Zero Hour Purge (ZAP) for all Teams Protection Policies.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-teamsprotectionpolicy"
+    }
+  },
+  "Categories": ["security", "zap", "teams"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that ZAP is enabled for all Teams Protection Policies."
+} 

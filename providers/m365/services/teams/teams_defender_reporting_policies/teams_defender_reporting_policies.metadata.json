@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_defender_reporting_policies",
+  "CheckTitle": "Ensure Teams and Defender Reporting Policies are configured securely",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/MessagingPolicy",
+  "Description": "Checks if Teams and Defender reporting policies are configured securely, including AllowSecurityEndUserReporting and Defender report submission settings.",
+  "Risk": "Improper configuration of reporting policies can result in missed security incidents or data leakage.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmessagingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMessagingPolicy -Identity Global -AllowSecurityEndUserReporting $true; Set-ReportSubmissionPolicy -ReportJunkToCustomizedAddress $true -ReportNotJunkToCustomizedAddress $true -ReportPhishToCustomizedAddress $true -ReportChatMessageEnabled $false -ReportChatMessageToCustomizedAddressEnabled $true",
+      "NativeIaC": "",
+      "Other": "Configure Teams and Defender reporting policies to match security best practices.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Configure Teams and Defender reporting policies to match security best practices.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmessagingpolicy"
+    }
+  },
+  "Categories": ["security", "teams", "defender"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Teams and Defender reporting policies are configured securely."
+} 

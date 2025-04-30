@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_idle_session_timeout",
+  "CheckTitle": "Check Idle Session Timeout in Conditional Access Policies",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "ConditionalAccessPolicy",
+  "Severity": "high",
+  "Risk": "Lack of idle session timeout increases the risk of unauthorized access if a session is left unattended.",
+  "Categories": ["identity", "policy", "session"],
+  "Description": "Checks if any conditional access policy with Idle Session Timeout is set to less than 3 seconds or not set.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Set Idle Session Timeout to a secure value (at least 3 seconds or more) in all relevant conditional access policies.",
+    "Recommendation": {
+      "Text": "Review and configure Idle Session Timeout in Conditional Access Policies to reduce risk of unattended sessions.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-session-lifetime"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/azuread/get-azureadmsconditionalaccesspolicy",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that idle session timeouts are configured for better security."
+} 

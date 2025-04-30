@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_exchange_online_spam_policies",
+  "CheckTitle": "Ensure Exchange Online Outbound Spam Filter Policies Notify Recipients",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Hosted Outbound Spam Filter Policy",
+  "Description": "Checks if Exchange Online outbound spam filter policies are configured to notify recipients when outbound spam is detected.",
+  "Risk": "If outbound spam notifications are not enabled, administrators may not be aware of compromised accounts or spam activity, increasing the risk of undetected abuse.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/exchange/antispam-and-antimalware/outbound-spam/configure-outbound-spam-notifications",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-HostedOutboundSpamFilterPolicy -Identity <PolicyName> -NotifyOutboundSpam $true -NotifyOutboundSpamRecipients <RecipientList>",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-spam. 4. Edit the Outbound policy and enable notifications for outbound spam.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable notifications for outbound spam in all Hosted Outbound Spam Filter Policies.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-hostedoutboundspamfilterpolicy"
+    }
+  },
+  "Categories": ["security", "spam", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that outbound spam notifications are enabled in all Hosted Outbound Spam Filter Policies."
+} 

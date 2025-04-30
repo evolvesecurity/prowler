@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_all_users_mfa_capable",
+  "CheckTitle": "Ensure All Member Users Are MFA Capable",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "User",
+  "Description": "Checks if all member users are MFA capable.",
+  "Risk": "If any member user is not MFA capable, the organization is at increased risk of account compromise.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-user-registration-details",
+  "Remediation": {
+    "Code": {
+      "CLI": "Get-MgReportAuthenticationMethodUserRegistrationDetail -Filter \"IsMfaCapable eq false and UserType eq 'Member'\"",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > Authentication methods. 3. Ensure all users are registered for MFA.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure all member users are MFA capable to reduce risk of account compromise.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-user-registration-details"
+    }
+  },
+  "Categories": ["security", "mfa", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all member users are MFA capable."
+} 

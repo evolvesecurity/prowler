@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_meeting_chat_enabled",
+  "CheckTitle": "Ensure Meeting Chat is enabled except for anonymous users in Teams Meetings",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Microsoft.Teams/MeetingPolicy",
+  "Description": "Checks if Meeting Chat is enabled except for anonymous users in Teams meetings.",
+  "Risk": "Disabling chat for authenticated users can reduce collaboration, while enabling for anonymous users can increase risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTeamsMeetingPolicy -Identity Global -MeetingChatEnabledType EnabledExceptAnonymous",
+      "NativeIaC": "",
+      "Other": "Set MeetingChatEnabledType to EnabledExceptAnonymous in the global meeting policy.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Set MeetingChatEnabledType to EnabledExceptAnonymous in the global meeting policy.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-csteamsmeetingpolicy"
+    }
+  },
+  "Categories": ["usability", "teams", "meetings"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Meeting Chat is enabled except for anonymous users in Teams meetings."
+} 

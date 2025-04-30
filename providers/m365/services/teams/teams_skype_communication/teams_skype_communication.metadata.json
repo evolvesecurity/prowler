@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "teams_skype_communication",
+  "CheckTitle": "Ensure communication with Skype users is disabled in Teams",
+  "CheckType": ["Automated"],
+  "ServiceName": "teams",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Teams/TenantFederationConfiguration",
+  "Description": "Checks if communication with Skype users (AllowPublicUsers) is disabled in Teams Tenant Federation Configuration.",
+  "Risk": "Allowing communication with Skype users can expose the organization to external threats and data leakage.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/teams/set-cstenantfederationconfiguration",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-CsTenantFederationConfiguration -AllowPublicUsers $false",
+      "NativeIaC": "",
+      "Other": "Disable communication with Skype users in Teams Tenant Federation Configuration.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disable communication with Skype users in Teams Tenant Federation Configuration.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/teams/set-cstenantfederationconfiguration"
+    }
+  },
+  "Categories": ["security", "teams", "federation"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that communication with Skype users is disabled in Teams Tenant Federation Configuration."
+} 

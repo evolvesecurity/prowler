@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_customer_lockbox",
+  "CheckTitle": "Check Customer Lockbox Configuration",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "OrganizationConfig",
+  "Severity": "high",
+  "Risk": "Disabling Customer Lockbox may allow Microsoft support engineers to access customer content without explicit approval.",
+  "Categories": ["identity", "policy", "compliance"],
+  "Description": "Checks if Customer Lockbox is enabled in the organization configuration.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Enable Customer Lockbox to require explicit approval for Microsoft support access to customer content.",
+    "Recommendation": {
+      "Text": "Review and configure Customer Lockbox settings to enhance data access control.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-365/compliance/customer-lockbox-requests"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/get-organizationconfig",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that Customer Lockbox is enabled for better compliance and data protection."
+} 

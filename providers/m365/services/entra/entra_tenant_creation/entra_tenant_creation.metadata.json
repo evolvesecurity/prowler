@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_tenant_creation",
+  "CheckTitle": "Ensure Tenant Creation is Not Allowed",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Default User Role Permissions",
+  "Description": "Checks if tenant creation is not allowed for default user roles.",
+  "Risk": "If tenant creation is allowed, users may create new Azure AD tenants, which could lead to unmonitored or unapproved environments.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-defaults",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgPolicyAuthorizationPolicy -DefaultUserRolePermissions_AllowedToCreateTenants $false",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Roles and administrators > User settings. 3. Set 'Users can create Azure AD tenants' to No.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Disallow tenant creation for default user roles.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/roles/security-defaults"
+    }
+  },
+  "Categories": ["security", "tenant", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that tenant creation is not allowed for default user roles."
+} 

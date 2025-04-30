@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_sign_in_risk_policy",
+  "CheckTitle": "Ensure Sign-In Risk Policies are Configured",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Conditional Access Policy",
+  "Description": "Checks if Sign-In Risk Policies are configured in Conditional Access policies.",
+  "Risk": "If Sign-In Risk Policies are not configured, risky sign-ins may not be detected or remediated.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-risk",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgIdentityConditionalAccessPolicy -Id <PolicyId> -Conditions <UpdatedConditions>",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > Conditional Access. 3. Edit policies to configure sign-in risk conditions.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Configure Sign-In Risk Policies in Conditional Access to detect and remediate risky sign-ins.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-risk"
+    }
+  },
+  "Categories": ["security", "risk", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that Sign-In Risk Policies are configured in Conditional Access policies."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_connection_filter_ip_allow_list",
+  "CheckTitle": "Ensure Connection Filter IP Allow List is Empty",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Connection Filter Policy",
+  "Description": "Checks if the IP Allow List in the Default Hosted Connection Filter Policy is empty.",
+  "Risk": "If the IP Allow List is not empty, unwanted or risky IPs may bypass anti-spam and anti-malware protections.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-the-connection-filter-policy?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-HostedConnectionFilterPolicy -Identity Default -IPAllowList @()",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-spam. 4. Edit the Default policy and clear the IP Allow List.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure the IP Allow List is empty unless there is a specific, justified need.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-hostedconnectionfilterpolicy"
+    }
+  },
+  "Categories": ["security", "connection-filter", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the IP Allow List is empty in the Default Hosted Connection Filter Policy."
+} 

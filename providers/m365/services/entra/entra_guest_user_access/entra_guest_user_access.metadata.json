@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_guest_user_access",
+  "CheckTitle": "Ensure Guest User Role ID is Set to a Most Restrictive Value",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Authorization Policy",
+  "Description": "Checks if the Guest User Role ID is set to a most restrictive value in the tenant.",
+  "Risk": "If the Guest User Role ID is not set to a most restrictive value, guest users may have more permissions than intended, increasing risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/guest-user-permissions",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgPolicyAuthorizationPolicy -GuestUserRoleId <MostRestrictiveValue>",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > External Identities > External collaboration settings. 3. Set Guest user access to the most restrictive option.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Set the Guest User Role ID to a most restrictive value to limit guest user permissions.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/external-identities/guest-user-permissions"
+    }
+  },
+  "Categories": ["security", "guest", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the Guest User Role ID is set to a most restrictive value in the tenant."
+} 

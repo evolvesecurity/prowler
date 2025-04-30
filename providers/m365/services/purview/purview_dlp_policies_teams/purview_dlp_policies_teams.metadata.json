@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "purview_dlp_policies_teams",
+  "CheckTitle": "Ensure DLP Policies for Teams are Compliant",
+  "CheckType": ["Automated"],
+  "ServiceName": "purview",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "DLP Policy",
+  "Description": "Checks if DLP policies for Teams workload are enabled and apply to all Teams locations.",
+  "Risk": "If DLP policies for Teams are not enabled or do not apply to all locations, sensitive data may be at risk of exposure.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/compliance/dlp-microsoft-teams?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-DlpCompliancePolicy -Identity <PolicyName> -Mode Enable -TeamsLocation All",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 compliance center (https://compliance.microsoft.com). 2. Under Solutions, select Data loss prevention. 3. Edit each DLP policy for Teams to ensure it is enabled and applies to all Teams locations.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable DLP policies for Teams and ensure they apply to all Teams locations.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-dlpcompliancepolicy"
+    }
+  },
+  "Categories": ["security", "dlp", "teams"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that DLP policies for Teams are enabled and apply to all Teams locations."
+} 

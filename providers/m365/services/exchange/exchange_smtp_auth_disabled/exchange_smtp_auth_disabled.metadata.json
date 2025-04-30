@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "exchange_smtp_auth_disabled",
+  "CheckTitle": "Ensure SMTP client authentication is disabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "exchange",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Microsoft.Exchange/TransportConfig",
+  "Description": "Checks if SMTP client authentication is disabled to prevent legacy protocol abuse.",
+  "Risk": "Enabling SMTP client authentication can allow attackers to bypass modern authentication controls.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-transportconfig",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-TransportConfig -SmtpClientAuthenticationDisabled $true",
+      "NativeIaC": "",
+      "Other": "Set SmtpClientAuthenticationDisabled to True in Exchange Online.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Set SmtpClientAuthenticationDisabled to True in Exchange Online.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-transportconfig"
+    }
+  },
+  "Categories": ["security", "exchange", "smtp"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that SMTP client authentication is disabled in Exchange Online."
+} 

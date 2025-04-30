@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_dkim_signing",
+  "CheckTitle": "Ensure DKIM Signing is Enabled for All Relevant Domains",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Domain",
+  "Description": "Checks if DKIM signing is enabled for all domains except .onmicrosoft.com in Exchange Online.",
+  "Risk": "If DKIM signing is not enabled, email sent from your domain is more susceptible to spoofing and phishing attacks.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/use-dkim-to-validate-outbound-email?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-DkimSigningConfig -Identity <Domain> -Enabled $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select DKIM. 4. Enable DKIM signing for each domain (except .onmicrosoft.com).",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable DKIM signing for all domains except .onmicrosoft.com.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-dkimsigningconfig"
+    }
+  },
+  "Categories": ["security", "dkim", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that DKIM signing is enabled for all relevant domains."
+} 

@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_apps_and_services_settings",
+  "CheckTitle": "Check Apps and Services Settings (Office Store and App & Services Trial)",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "AppsAndServicesSettings",
+  "Severity": "high",
+  "Risk": "Enabling Office Store or App & Services Trial may allow unapproved apps or trials, increasing risk of data exposure or shadow IT.",
+  "Categories": ["identity", "policy", "apps"],
+  "Description": "Checks if Office Store or App & Services Trial are enabled in Apps and Services settings.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Disable Office Store and App & Services Trial unless explicitly required.",
+    "Recommendation": {
+      "Text": "Review and configure Apps and Services settings to restrict unapproved apps and trials.",
+      "Url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-apps"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/graph/api/admin-appsandservices-get?view=graph-rest-beta",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that Office Store and App & Services Trial are not enabled unless necessary."
+} 

@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_user_app_consent",
+  "CheckTitle": "Ensure User App Consent Does Not Allow Default Low Permission Grants",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Default User Role Permissions",
+  "Description": "Checks if the permission grant policy 'ManagePermissionGrantsForSelf.microsoft-user-default-low' is not assigned for user app consent.",
+  "Risk": "If this policy is assigned, users may grant excessive permissions to applications, increasing the risk of data exposure.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent",
+  "Remediation": {
+    "Code": {
+      "CLI": "Update-MgPolicyAuthorizationPolicy -DefaultUserRolePermissions_PermissionGrantPoliciesAssigned @()",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Enterprise applications > User settings. 3. Adjust user consent settings to restrict permission grants.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure the permission grant policy 'ManagePermissionGrantsForSelf.microsoft-user-default-low' is not assigned for user app consent.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent"
+    }
+  },
+  "Categories": ["security", "consent", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that the default low permission grant policy is not assigned for user app consent."
+} 

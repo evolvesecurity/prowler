@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_anti_phishing_policy",
+  "CheckTitle": "Ensure Anti-Phishing Policy is Strictly Configured",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Anti-Phishing Policy",
+  "Description": "Checks if Anti-Phishing policies in Exchange Online are configured with strict recommended settings, including enabled protections, threshold, and actions.",
+  "Risk": "If anti-phishing policies are not strictly configured, users and the organization are at greater risk of phishing attacks, spoofing, and targeted threats.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-phishing-policies-about?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-AntiPhishPolicy -Identity <PolicyName> -Enabled $true -PhishThresholdLevel 3 -EnableTargetedUserProtection $true -EnableOrganizationDomainsProtection $true -EnableMailboxIntelligence $true -EnableMailboxIntelligenceProtection $true -EnableSpoofIntelligence $true -TargetedUserProtectionAction Quarantine -TargetedDomainProtectionAction Quarantine -MailboxIntelligenceProtectionAction Quarantine -EnableFirstContactSafetyTips $true -EnableSimilarUsersSafetyTips $true -EnableSimilarDomainsSafetyTips $true -EnableUnusualCharactersSafetyTips $true -HonorDmarcPolicy $true",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-phishing. 4. Edit each policy to match the strict recommended settings.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Configure all Anti-Phishing policies with strict recommended settings for maximum protection.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-antiphishpolicy"
+    }
+  },
+  "Categories": ["security", "phishing", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all Anti-Phishing policies are configured with strict recommended settings, including non-empty TargetedUsersToProtect."
+} 

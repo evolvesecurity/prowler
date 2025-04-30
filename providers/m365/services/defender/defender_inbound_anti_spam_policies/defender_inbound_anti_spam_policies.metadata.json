@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "defender_inbound_anti_spam_policies",
+  "CheckTitle": "Ensure Inbound Anti-Spam Policies Have Empty AllowedSenderDomains",
+  "CheckType": ["Automated"],
+  "ServiceName": "defender",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "medium",
+  "ResourceType": "Content Filter Policy",
+  "Description": "Checks if AllowedSenderDomains is empty for all Hosted Content Filter Policies.",
+  "Risk": "If AllowedSenderDomains is not empty, unwanted or risky senders may bypass anti-spam protections.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/configure-the-content-filter-policy?view=o365-worldwide",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-HostedContentFilterPolicy -Identity <PolicyName> -AllowedSenderDomains @()",
+      "NativeIaC": "",
+      "Other": "1. Go to Microsoft 365 Defender (https://security.microsoft.com). 2. Expand Email & collaboration > Policies & rules > Threat policies. 3. Under Policies, select Anti-spam. 4. Edit each policy and clear the AllowedSenderDomains.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Ensure AllowedSenderDomains is empty for all Hosted Content Filter Policies unless there is a specific, justified need.",
+      "Url": "https://learn.microsoft.com/en-us/powershell/module/exchange/set-hostedcontentfilterpolicy"
+    }
+  },
+  "Categories": ["security", "anti-spam", "email"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that AllowedSenderDomains is empty for all Hosted Content Filter Policies."
+} 

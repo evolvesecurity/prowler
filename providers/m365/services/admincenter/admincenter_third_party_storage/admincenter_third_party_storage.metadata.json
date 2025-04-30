@@ -1,0 +1,31 @@
+{
+  "Provider": "m365",
+  "CheckID": "admincenter_third_party_storage",
+  "CheckTitle": "Check for Third Party Storage Service Principal",
+  "ServiceName": "admincenter",
+  "SubServiceName": "",
+  "CheckType": ["Automated"],
+  "ResourceIdTemplate": "",
+  "ResourceType": "ServicePrincipal",
+  "Severity": "high",
+  "Risk": "Presence of a third party storage service principal may allow unauthorized data access or exfiltration.",
+  "Categories": ["identity", "policy", "apps"],
+  "Description": "Checks if a service principal with a known third party storage App ID exists.",
+  "Remediation": {
+    "Code": {
+      "NativeIaC": "",
+      "Terraform": "",
+      "CLI": "",
+      "Other": ""
+    },
+    "Text": "Remove unauthorized third party storage service principals unless explicitly required.",
+    "Recommendation": {
+      "Text": "Review and remove unnecessary service principals with known third party storage App IDs.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/delete-application-portal"
+    }
+  },
+  "RelatedUrl": "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0&tabs=http",
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check helps ensure that unauthorized third party storage service principals are not present."
+} 

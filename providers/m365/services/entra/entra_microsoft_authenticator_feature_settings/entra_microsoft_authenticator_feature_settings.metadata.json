@@ -1,0 +1,30 @@
+{
+  "Provider": "m365",
+  "CheckID": "entra_microsoft_authenticator_feature_settings",
+  "CheckTitle": "Ensure Microsoft Authenticator Feature Settings Are Enabled",
+  "CheckType": ["Automated"],
+  "ServiceName": "entra",
+  "SubServiceName": "",
+  "ResourceIdTemplate": "",
+  "Severity": "high",
+  "ResourceType": "Authentication Method Policy",
+  "Description": "Checks if all Microsoft Authenticator feature settings are enabled.",
+  "Risk": "If any Microsoft Authenticator feature setting is disabled, users may not be able to use all security features, increasing risk.",
+  "RelatedUrl": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-policy",
+  "Remediation": {
+    "Code": {
+      "CLI": "Set-MgPolicyAuthenticationMethodPolicyAuthenticationMethodConfiguration -AuthenticationMethodConfigurationId microsoftAuthenticator -FeatureSettings <Enabled>",
+      "NativeIaC": "",
+      "Other": "1. Go to Azure Portal (https://portal.azure.com). 2. Navigate to Azure Active Directory > Security > Authentication methods. 3. Edit Microsoft Authenticator settings to enable all features.",
+      "Terraform": ""
+    },
+    "Recommendation": {
+      "Text": "Enable all Microsoft Authenticator feature settings to maximize security.",
+      "Url": "https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-authentication-methods-policy"
+    }
+  },
+  "Categories": ["security", "authenticator", "entra"],
+  "DependsOn": [],
+  "RelatedTo": [],
+  "Notes": "This check validates that all Microsoft Authenticator feature settings are enabled."
+} 
